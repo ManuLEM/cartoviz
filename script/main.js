@@ -16,15 +16,10 @@ function initMap(position, zoom){
 			zoom: zoom
 		});
 
-		var opLayer = new ArcGISDynamicMapServiceLayer("http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Petroleum/KSWells/MapServer");
+		var opLayer = new ArcGISDynamicMapServiceLayer("data/pnr.json");
 		opLayer.setVisibleLayers([0]);
 
-		//apply a definition expression so only some features are shown 
-		var layerDefinitions = [];
-		layerDefinitions[0] = "FIELD_KID=1000148164";
-		opLayer.setLayerDefinitions(layerDefinitions);
-
-		//add the gas fields layer to the map 
+		//add the layer to the map 
 		map.addLayers([opLayer]);
 
 		map.on("layers-add-result", initSlider);
