@@ -1,74 +1,27 @@
-function initMap(position, zoom){
-	var zoom = zoom || 15;
-	var map;
-	require([
-		"esri/map", "esri/layers/ArcGISDynamicMapServiceLayer", 
-		"esri/TimeExtent", "esri/dijit/TimeSlider",
-		"dojo/_base/array", "dojo/dom", "dojo/domReady!"
-	], function(
-		Map, ArcGISDynamicMapServiceLayer, 
-		TimeExtent, TimeSlider,
-		arrayUtils, dom
-	) {
-		map = new Map("mapDiv", {
-			basemap: "streets",
-			center: [position.coords.longitude, position.coords.latitude],
-			zoom: zoom
-		});
+var map = L.map('map').setView([48.8567, 2.3508], 13);
 
-		var opLayer = new ArcGISDynamicMapServiceLayer("data/pnr.json");
-		opLayer.setVisibleLayers([0]);
+L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+}).addTo(map);
 
-		//add the layer to the map 
-		map.addLayers([opLayer]);
+var myLayer = L.geoJson().addTo(map);
+$.getJSON("./data/arrondissements.geojson", function(collection) {
+	myLayer.addData(collection);
+});
 
-		map.on("layers-add-result", initSlider);
 
-		function initSlider() {
-			var timeSlider = new TimeSlider({
-				style: "width: 100%;"
-			}, dom.byId("timeSliderDiv"));
-			map.setTimeSlider(timeSlider);
+var southWest = new L.latLng([48.81, 2.22], map.getMaxZoom());
+var northEast = new L.latLng([48.91, 2.48], map.getMaxZoom());
+map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
 
-			var timeExtent = new TimeExtent();
-			timeExtent.startTime = new Date("1/1/1921 UTC");
-			timeExtent.endTime = new Date("12/31/2009 UTC");
-			timeSlider.setThumbCount(2);
-			timeSlider.createTimeStopsByTimeInterval(timeExtent, 2, "esriTimeUnitsYears");
-			timeSlider.setThumbIndexes([0,1]);
-			timeSlider.setThumbMovingRate(2000);
-			timeSlider.startup();
 
-			//add labels for every other time stop
-			var labels = arrayUtils.map(timeSlider.timeStops, function(timeStop, i) { 
-				if ( i % 2 === 0 ) {
-					return timeStop.getUTCFullYear(); 
-				} else {
-					return "";
-				}
-			}); 
+var popup = L.popup();
 
-			timeSlider.setLabels(labels);
-
-			timeSlider.on("time-extent-change", function(evt) {
-				var startValString = evt.startTime.getUTCFullYear();
-				var endValString = evt.endTime.getUTCFullYear();
-				dom.byId("daterange").innerHTML = "<i>" + startValString + " and " + endValString  + "<\/i>";
-			});
-		}
-	});
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
 }
 
-if(navigator.geolocation){
-  navigator.geolocation.getCurrentPosition(initMap);
-}
-else{
-	var position = {
-		coords: {
-			longitude: 2.3463724,
-			latitude: 48.8510561
-		}
-	};
-	var zoom = 13;
-	initMap(position, zoom);
-}
+map.on('click', onMapClick);

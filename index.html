@@ -1,26 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
-    <title>Cartoviz</title>
-    
-    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
-    <link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
-    <link rel="stylesheet" href="css/style.css">
+	<head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    	<title>Cartoviz</title>
+    	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+    	<link rel="stylesheet" href="css/style.css" />
+    	<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+    	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+  	</head>
+  	<body>
+		<div id="map"></div>
 
-    <script src="http://js.arcgis.com/3.8/"></script>
-    <script src="script/main.js"></script>
-  </head>
-  <body class="claro">
-
-    <div id="mapDiv">
-      <div id="bottomPanel">
-        <div id="timeInfo">
-          <div>Test</div>
-          <div id="timeSliderDiv"></div>
-        </div>
-      </div>
-    </div>
-  </body>
+		<script src="script/main.js"></script>
+  	</body>
 </html>
