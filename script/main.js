@@ -1,4 +1,4 @@
-var map = L.map('map').setView([48.8567, 2.3508], 13);
+var map = L.map('map').setView([48.8567, 2.3508], 12);
 
 var southWest = new L.latLng([48.81, 2.22], map.getMaxZoom());
 var northEast = new L.latLng([48.91, 2.48], map.getMaxZoom());
@@ -7,57 +7,190 @@ map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
 L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
 	attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
 	subdomains: '1234',
-	minZoom: 13
+	minZoom: 12
 }).addTo(map);
 
 var myLayer = L.geoJson().addTo(map);
-var data = false;
+var data = [
+	{
+		arrondissement: 75001,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75002,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75003,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75004,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75005,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75006,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75007,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75008,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75009,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75010,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75011,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75012,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75013,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75014,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75015,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75016,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75017,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75018,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75019,
+		elements: 0,
+		visible: false
+	},
+	{
+		arrondissement: 75020,
+		elements: 0,
+		visible: false
+	},
+];
+var number = 0;
+var prev_feature = false;
+var prev_color = false;
 
-function getColor() {
-    return "#ff7800";
+function getColor(feature) {
+    return feature.addedData.elements > 20   ? '#006064' :
+           feature.addedData.elements > 10   ? '#1D7074' :
+           feature.addedData.elements > 5    ? '#01939A' :
+                      						   '#34C6CD';
 }
 
-function get_data(layer){
-	setTimeout(function(){
-		$.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
-			for( var i = 0 in bars.features){
+$.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
+	window.bars = bars;
+	for( var i = 0 in window.bars.features){
+		for( var j = 0 in data){
+			if ( data[j].arrondissement === bars.features[i].properties.arrondissement) {
+				data[j].elements ++;
+			};
+		}
+	}
+}).done(function(){
+	function get_data(layer){
+		setTimeout(function(){
+			for( var i = 0 in window.bars.features){
 				var arr_number = 75000 + parseInt(layer.feature.properties.Name);
-				if (arr_number === bars.features[i].properties.arrondissement) {
-					L.marker(bars.features[i].properties.lat_lon).addTo(map);
+				if (arr_number === window.bars.features[i].properties.arrondissement) {
+					L.marker(window.bars.features[i].properties.lat_lon).addTo(map);
 				};
 			}
-		});
-	}, 200);
-}
-
-$.getJSON("./data/arrondissements.geojson", function(collection) {
-	var geojson = L.geoJson(collection, {
-		onEachFeature: onEachFeature,
-		style: {
-	        fillColor: getColor(),
-	        color: 'white',
-	        dashArray: '7',
-		    weight: 2,
-		    opacity: 1,
-		    fillOpacity: 0.3
-	    }
-	}).addTo(map);
-
-	function clickFeature(e) {
-		var layer = e.target;
-		map.fitBounds(layer.getBounds());
-		if (!data) {
-			get_data(layer);
-			data = true;
-		};
-		// console.log(map.getCenter());
+		}, 200);
 	}
 
-	function onEachFeature(feature, layer) {
-		layer.on({
-			click: clickFeature
-		});
-	}
+	$.getJSON("./data/arrondissements.geojson", function(collection) {
+		var geojson = L.geoJson(collection, {
+			onEachFeature: onEachFeature,
+			style: {
+		        color: 'white',
+		        dashArray: '7',
+			    weight: 2,
+			    opacity: 1,
+			    fillOpacity: 1
+		    }
+		}).addTo(map);
+
+		function clickFeature(e) {
+			var layer = e.target;
+			map.fitBounds(layer.getBounds());
+			if (data[parseInt(layer.feature.properties.Name)].visible === false) {
+				if(prev_feature && prev_color){
+					prev_feature.setStyle({ fillColor: prev_color });
+				}
+				prev_feature = e.layer;
+				prev_color = e.layer.options.fillColor;
+				for(var z = 0 in data){
+					data[z].visible = false;
+				}
+
+				layer.setStyle({ fillColor: 'transparent' });
+
+				map.removeLayer(bars);
+				get_data(layer);
+
+				data[parseInt(layer.feature.properties.Name)].visible = true;
+			};
+		}
+
+		function onEachFeature(feature, layer) {
+			feature.addedData = data[number];
+			number ++;
+			layer.setStyle({
+				fillColor: getColor(feature)
+			});
+
+			layer.on({
+				click: clickFeature
+			});
+		}
+	});
 });
 
 
