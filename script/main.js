@@ -4,20 +4,40 @@ var southWest = new L.latLng([48.81, 2.22], map.getMaxZoom());
 var northEast = new L.latLng([48.91, 2.48], map.getMaxZoom());
 map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
 
-L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community',
+L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
+	attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	subdomains: '1234',
 	minZoom: 13
 }).addTo(map);
 
 var myLayer = L.geoJson().addTo(map);
+var data = false;
+
+function getColor() {
+    return "#ff7800";
+}
+
+function get_data(layer){
+	setTimeout(function(){
+		$.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
+			for( var i = 0 in bars.features){
+				var arr_number = 75000 + parseInt(layer.feature.properties.Name);
+				if (arr_number === bars.features[i].properties.arrondissement) {
+					L.marker(bars.features[i].properties.lat_lon).addTo(map);
+				};
+			}
+		});
+	}, 200);
+}
 
 $.getJSON("./data/arrondissements.geojson", function(collection) {
 	var geojson = L.geoJson(collection, {
 		onEachFeature: onEachFeature,
 		style: {
-	        fillColor: "#ff7800",
-		    color: "red",
-		    weight: 1,
+	        fillColor: getColor(),
+	        color: 'white',
+	        dashArray: '7',
+		    weight: 2,
 		    opacity: 1,
 		    fillOpacity: 0.3
 	    }
@@ -26,28 +46,28 @@ $.getJSON("./data/arrondissements.geojson", function(collection) {
 	function clickFeature(e) {
 		var layer = e.target;
 		map.fitBounds(layer.getBounds());
-		//console.log(layer.feature.properties.name); //country info from geojson
+		if (!data) {
+			get_data(layer);
+			data = true;
+		};
+		// console.log(map.getCenter());
 	}
 
 	function onEachFeature(feature, layer) {
 		layer.on({
-		  click: clickFeature
+			click: clickFeature
 		});
 	}
-
-	myLayer.on({
-		click: function() {
-			map.setView([0,0],8);
-		}
-	});
 });
 
-var popup = L.popup();
 
-function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
-}
-map.on('click', onMapClick);
+
+// var popup = L.popup();
+
+// function onMapClick(e) {
+//     popup
+//         .setLatLng(e.latlng)
+//         .setContent("You clicked the map at " + e.latlng.toString())
+//         .openOn(map);
+// }
+// map.on('click', onMapClick);
