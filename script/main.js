@@ -117,7 +117,33 @@ var number = 0;
 var prev_feature = false;
 var prev_color = false;
 var data = {};
-var layers = L.layerGroup();
+
+function pointIsInPoly(p, polygon) {
+    var isInside = false;
+    var minX = polygon[0][0], maxX = polygon[0][0];
+    var minY = polygon[0][1], maxY = polygon[0][1];
+    for (var n = 1; n < polygon.length; n++) {
+        var q = polygon[n];
+        minX = Math.min(q[0], minX);
+        maxX = Math.max(q[0], maxX);
+        minY = Math.min(q[1], minY);
+        maxY = Math.max(q[1], maxY);
+    }
+
+    if (p[1] < minX || p[1] > maxX || p[0] < minY || p[0] > maxY) {
+        return false;
+    }
+
+    var i = 0, j = polygon.length - 1;
+    for (i, j; i < polygon.length; j = i++) {
+        if ( (polygon[i][1] > p[0]) != (polygon[j][1] > p[0]) &&
+                p[1] < (polygon[j][0] - polygon[i][1]) * (p[0] - polygon[i][1]) / (polygon[j][0] - polygon[i][1]) + polygon[i][0] ) {
+            isInside = !isInside;
+        }
+    }
+
+    return isInside;
+}
 
 function getColor(feature) {
     return feature.addedData.elements > 20   ? '#006064' :
@@ -136,21 +162,13 @@ function removeMarkers(){
 $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 	data.bars = bars;
 	data.bars.markers = [];
-	for( var i = 0 in data.bars.features){
-		for( var j = 0 in parArrondissement){
-			if ( parArrondissement[j].arrondissement === bars.features[i].properties.arrondissement) {
-				parArrondissement[j].elements ++;
-			};
-		}
-	}
 }).done(function(){
 	function get_data(layer){
 		var element_id = 0;
 		setTimeout(function(){
 			$.each(data, function( dataSet ){
 				for( var i = 0 in data[dataSet].features ){
-					var arr_number = 75000 + parseInt(layer.feature.properties.Name);
-					if (arr_number === data[dataSet].features[i].properties.arrondissement && data[dataSet].features[i].properties.lat_lon) {
+					if ( data[dataSet].features[i].properties.lat_lon && pointIsInPoly( data[dataSet].features[i].properties.lat_lon, layer.feature.geometry.coordinates[0][0]) ){
 						data[dataSet].markers[ element_id ] = L.marker(data[dataSet].features[i].properties.lat_lon);
 						map.addLayer(data[dataSet].markers[ element_id ]);
 						element_id ++;
@@ -176,7 +194,6 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 		function clickFeature(e) {
 			var layer = e.target;
 			map.fitBounds(layer.getBounds());
-			console.log(parArrondissement[parseInt(layer.feature.properties.Name) - 1]);
 			if (parArrondissement[parseInt(layer.feature.properties.Name) - 1].visible === false) {
 				if(prev_feature && prev_color){
 					prev_feature.setStyle({ fillColor: prev_color });
@@ -197,6 +214,14 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 		}
 
 		function onEachFeature(feature, layer) {
+			$.each(data, function( dataSet ){
+				for( var i = 0 in data[dataSet].features){
+					if ( data[dataSet].features[i].properties.lat_lon && pointIsInPoly( data[dataSet].features[i].properties.lat_lon, layer.feature.geometry.coordinates[0][0]) ){	
+						parArrondissement[number].elements ++;
+					}
+				}
+			});
+
 			feature.addedData = parArrondissement[number];
 			number ++;
 			layer.setStyle({
