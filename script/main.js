@@ -11,7 +11,7 @@ L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
 }).addTo(map);
 
 var myLayer = L.geoJson().addTo(map);
-var data = [
+var parArrondissement = [
 	{
 		arrondissement: 75001,
 		elements: 0,
@@ -116,6 +116,8 @@ var data = [
 var number = 0;
 var prev_feature = false;
 var prev_color = false;
+var data = {};
+var layers = L.layerGroup();
 
 function getColor(feature) {
     return feature.addedData.elements > 20   ? '#006064' :
@@ -125,23 +127,28 @@ function getColor(feature) {
 }
 
 $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
-	window.bars = bars;
-	for( var i = 0 in window.bars.features){
-		for( var j = 0 in data){
-			if ( data[j].arrondissement === bars.features[i].properties.arrondissement) {
-				data[j].elements ++;
+	data.bars = bars;
+	data.bars.markers = [];
+	for( var i = 0 in data.bars.features){
+		for( var j = 0 in parArrondissement){
+			if ( parArrondissement[j].arrondissement === bars.features[i].properties.arrondissement) {
+				parArrondissement[j].elements ++;
 			};
 		}
 	}
 }).done(function(){
 	function get_data(layer){
+		var element_id = 0;
 		setTimeout(function(){
-			for( var i = 0 in window.bars.features){
+			for( var i = 0 in data.bars.features ){
 				var arr_number = 75000 + parseInt(layer.feature.properties.Name);
-				if (arr_number === window.bars.features[i].properties.arrondissement) {
-					L.marker(window.bars.features[i].properties.lat_lon).addTo(map);
+				if (arr_number === data.bars.features[i].properties.arrondissement) {
+					data.bars.markers[ element_id ] = L.marker(data.bars.features[i].properties.lat_lon);
+					map.addLayer(data.bars.markers[ element_id ]);
+					element_id ++;
 				};
-			}
+			};
+
 		}, 200);
 	}
 
@@ -160,27 +167,29 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 		function clickFeature(e) {
 			var layer = e.target;
 			map.fitBounds(layer.getBounds());
-			if (data[parseInt(layer.feature.properties.Name)].visible === false) {
+			if (parArrondissement[parseInt(layer.feature.properties.Name)].visible === false) {
 				if(prev_feature && prev_color){
 					prev_feature.setStyle({ fillColor: prev_color });
 				}
 				prev_feature = e.layer;
 				prev_color = e.layer.options.fillColor;
-				for(var z = 0 in data){
-					data[z].visible = false;
+				for(var z = 0 in parArrondissement){
+					parArrondissement[z].visible = false;
 				}
 
 				layer.setStyle({ fillColor: 'transparent' });
-
-				map.removeLayer(bars);
+				
+				for( var i = 0 in data.bars.markers){
+					map.removeLayer(data.bars.markers[i]);
+				}
 				get_data(layer);
 
-				data[parseInt(layer.feature.properties.Name)].visible = true;
+				parArrondissement[parseInt(layer.feature.properties.Name)].visible = true;
 			};
 		}
 
 		function onEachFeature(feature, layer) {
-			feature.addedData = data[number];
+			feature.addedData = parArrondissement[number];
 			number ++;
 			layer.setStyle({
 				fillColor: getColor(feature)
