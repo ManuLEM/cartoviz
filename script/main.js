@@ -126,6 +126,13 @@ function getColor(feature) {
                       						   '#34C6CD';
 }
 
+function removeMarkers(){
+	$.each(data, function( dataSet ){
+		for( var i = 0 in data[dataSet].markers){
+			map.removeLayer(data[dataSet].markers[i]);
+		}
+	});
+}
 $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 	data.bars = bars;
 	data.bars.markers = [];
@@ -140,16 +147,18 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 	function get_data(layer){
 		var element_id = 0;
 		setTimeout(function(){
-			for( var i = 0 in data.bars.features ){
-				var arr_number = 75000 + parseInt(layer.feature.properties.Name);
-				if (arr_number === data.bars.features[i].properties.arrondissement) {
-					data.bars.markers[ element_id ] = L.marker(data.bars.features[i].properties.lat_lon);
-					map.addLayer(data.bars.markers[ element_id ]);
-					element_id ++;
+			$.each(data, function( dataSet ){
+				for( var i = 0 in data[dataSet].features ){
+					var arr_number = 75000 + parseInt(layer.feature.properties.Name);
+					if (arr_number === data[dataSet].features[i].properties.arrondissement && data[dataSet].features[i].properties.lat_lon) {
+						data[dataSet].markers[ element_id ] = L.marker(data[dataSet].features[i].properties.lat_lon);
+						map.addLayer(data[dataSet].markers[ element_id ]);
+						element_id ++;
+					};
 				};
-			};
+			});
 
-		}, 200);
+		}, 300);
 	}
 
 	$.getJSON("./data/arrondissements.geojson", function(collection) {
@@ -167,7 +176,8 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 		function clickFeature(e) {
 			var layer = e.target;
 			map.fitBounds(layer.getBounds());
-			if (parArrondissement[parseInt(layer.feature.properties.Name)].visible === false) {
+			console.log(parArrondissement[parseInt(layer.feature.properties.Name) - 1]);
+			if (parArrondissement[parseInt(layer.feature.properties.Name) - 1].visible === false) {
 				if(prev_feature && prev_color){
 					prev_feature.setStyle({ fillColor: prev_color });
 				}
@@ -179,12 +189,10 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 
 				layer.setStyle({ fillColor: 'transparent' });
 				
-				for( var i = 0 in data.bars.markers){
-					map.removeLayer(data.bars.markers[i]);
-				}
+				removeMarkers();
 				get_data(layer);
 
-				parArrondissement[parseInt(layer.feature.properties.Name)].visible = true;
+				parArrondissement[parseInt(layer.feature.properties.Name) - 1].visible = true;
 			};
 		}
 
@@ -201,8 +209,6 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 		}
 	});
 });
-
-
 
 // var popup = L.popup();
 
