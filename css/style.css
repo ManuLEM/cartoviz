@@ -4,31 +4,51 @@ html, body, #map {
 	height:100%;
 	min-height: 700;
 }
-
+header{
+	height: 64px;
+	margin-bottom: 12px;
+	background-color: grey;
+	position: relative;
+}
+.logo {
+	background-image: url(../timelife.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	padding:30px; 
+	margin:0px 65px 0px;
+	display: inline-block;
+	vertical-align: middle;
+}
+h1{
+	margin: 0;
+	display: inline-block;
+	vertical-align: middle;
+}
 
 
 #framecontentLeft{
 	display: inline-block;
 width: 20%; /*taille div gauche*/
-height: 100%;
+height: calc(100% - 76px);
 overflow: hidden; /*desactive le scroll bar*/
 color: black;
 vertical-align: top;
+
 }
 #framecontentRight{
 	display: inline-block;
 	width: 80%;
-	height: 100%;
+	height: calc(100% - 76px);
 margin-left: -4px;
 vertical-align: top;
 position: relative;
 }
 
 #maincontent{
-	top: 65px;
+	top: 0;
 left: 0;
-right: 0px;
-bottom: 65px;
+right: 12px;
+bottom: 60px;
 position: absolute;
 }
 
@@ -48,5 +68,34 @@ height: 100%;
 width: 100%; 
 }
 
-.logo {background-image: url(../cartoviz.png);
-background-repeat: no-repeat; padding:50px 50px 50px 50px; margin:100px 0px 0px 0px; float:left top;}
+#menu li {
+	display: block;
+	list-style-type: none;
+    width: 42px;
+    height: 42px;
+    border-radius:         30px; 
+    background-color: grey;
+    text-align: center;
+    margin: 5px;
+
+}
+#menu ul {
+	max-height: 
+}
+#menu img{
+	
+	margin-top: 6px;
+}
+#settings{
+	position: absolute;
+	right: 0;
+	top: 0;
+	right: 35px;
+}
+#settings li{
+	display: inline-block;
+	list-style-type: none;
+	margin: 5px;
+
+
+}
