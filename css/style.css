@@ -2,8 +2,51 @@ html, body, #map {
 	padding:0;
 	margin:0;
 	height:100%;
+	min-height: 700;
 }
 
-#map {
-	position: relative;
+
+
+#framecontentLeft{
+	display: inline-block;
+width: 20%; /*taille div gauche*/
+height: 100%;
+overflow: hidden; /*desactive le scroll bar*/
+color: black;
+vertical-align: top;
 }
+#framecontentRight{
+	display: inline-block;
+	width: 80%;
+	height: 100%;
+margin-left: -4px;
+vertical-align: top;
+position: relative;
+}
+
+#maincontent{
+	top: 65px;
+left: 0;
+right: 0px;
+bottom: 65px;
+position: absolute;
+}
+
+footer{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+}
+
+* html body{ /*IE6 hack*/
+padding: 110px 0 120px 200px; /*Set value to (HeightOfTopFrameDiv  0 HeightOfBottomFrameDiv WidthOfLeftFrameDiv)*/
+}
+
+* html #maincontent{ /*IE6 hack*/
+height: 100%; 
+width: 100%; 
+}
+
+.logo {background-image: url(../cartoviz.png);
+background-repeat: no-repeat; padding:50px 50px 50px 50px; margin:100px 0px 0px 0px; float:left top;}
