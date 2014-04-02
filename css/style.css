@@ -79,9 +79,7 @@ width: 100%;
     margin: 5px;
 
 }
-#menu ul {
-	max-height: 
-}
+
 #menu img{
 	
 	margin-top: 6px;
@@ -91,6 +89,9 @@ width: 100%;
 	right: 0;
 	top: 0;
 	right: 35px;
+}
+#settings ul{
+	margin: 10px 0;
 }
 #settings li{
 	display: inline-block;
