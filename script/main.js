@@ -7,7 +7,8 @@ map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
 L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
 	attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
 	subdomains: '1234',
-	minZoom: 12
+	minZoom: 12,
+	zoom: false
 }).addTo(map);
 
 var myLayer = L.geoJson().addTo(map);
@@ -168,18 +169,18 @@ function removeMarkers(){
 $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 	data.bars = bars;
 	data.bars.markers = [];
-	data.bars.ages = [18, 35]
+	data.bars.ages = [18, 35];
 
 	$.getJSON("./data/les_salles_de_cinemas_en_ile-de-france.geojson", function(cinemas) {
 		data.cinemas = cinemas;
 		data.cinemas.markers = [];
-		data.cinemas.ages = [7, 77]
+		data.cinemas.ages = [7, 77];
 	});
 
 	$.getJSON("./data/manege_et_jeux.geojson", function(maneges) {
 		data.maneges = maneges;
 		data.maneges.markers = [];
-		data.maneges.ages = [7, 10]
+		data.maneges.ages = [7, 10];
 	});
 }).done(function(){
 	function get_data(layer){
@@ -187,7 +188,7 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 		setTimeout(function(){
 			$.each(data, function( dataSet ){
 				for( var i = 0 in data[dataSet].features ){
-					if ( data[dataSet].features[i].geometry && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layer.feature.geometry.coordinates[0][0]) ){
+					if ( data[dataSet].features[i].geometry && data[dataSet].ages[0] <= age_user && data[dataSet].ages[1] >= age_user && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layer.feature.geometry.coordinates[0][0]) ){
 						data[dataSet].markers[ element_id ] = L.marker([data[dataSet].features[i].geometry.coordinates[1], data[dataSet].features[i].geometry.coordinates[0]]);
 						map.addLayer(data[dataSet].markers[ element_id ]);
 						element_id ++;
@@ -206,7 +207,7 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 		        dashArray: '7',
 			    weight: 2,
 			    opacity: 1,
-			    fillOpacity: 1
+			    fillOpacity: 0.8
 		    }
 		}).addTo(map);
 
