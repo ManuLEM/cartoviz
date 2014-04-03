@@ -118,8 +118,21 @@ var number = 0;
 var prev_feature = false;
 var prev_color = false;
 var data = {};
-var age_user = $('#timeline').val();
 var layers = [];
+var agesNumber = '';
+var numbersToShow = [[7,10], [11,14], [15,17], [18,24], [25,34], [35,49], [50,64], [65,77]];
+for (var i = 0; i < numbersToShow.length; i++) {
+	agesNumber += "<span>"+ numbersToShow[i][0] +" - "+ numbersToShow[i][1] +"</span>";
+};
+
+$('#numbers').html( agesNumber );
+
+for (var i = 0; i < $('#numbers span').length; i++) {
+	$('#numbers span').eq(i).css({
+		left: ((($('#numbers').width() - 29) / 7) * i)
+	});
+};
+var age_user = (numbersToShow[$('#timeline').val()-1][0] + numbersToShow[$('#timeline').val()-1][1]) /2;
 
 function pointIsInPoly(p, polygon) {
     var isInside = false;
@@ -148,86 +161,97 @@ function pointIsInPoly(p, polygon) {
     return isInside;
 }
 
+function getIconColor() {
+	if ( age_user >= 7 && age_user <= 10 ){
+	    return '#ff4040';
+	}
+	else if ( age_user >= 11 && age_user <= 14 ){
+	    return '#e6399b';
+	}
+	else if ( age_user >= 15 && age_user <= 17 ){
+	    return '#e57939';
+	}
+	else if ( age_user >= 18 && age_user <= 24 ){
+	    return '#269954';
+	}
+	else if ( age_user >= 25 && age_user <= 34 ){
+	    return '#2b95a4';
+	}
+	else if ( age_user >= 35 && age_user <= 49 ){
+	    return '#942da8';
+	}
+	else if ( age_user >= 50 && age_user <= 64 ){
+	    return '#b2812c';
+	}
+	else if ( age_user >= 65 && age_user <= 77 ){
+	    return '#297c04';
+	}
+}
+
 function getColor(feature) {
 	if ( age_user >= 7 && age_user <= 10 ){
-	    return feature.addedData.elements > 20   ? '#e53939' :
-	           feature.addedData.elements > 17   ? '#ff4040' :
-	           feature.addedData.elements > 13   ? '#ff5353' :
-	           feature.addedData.elements > 10   ? '#ff6666' :
-	           feature.addedData.elements > 7    ? '#ff7979' :
-	           feature.addedData.elements > 4    ? '#ff8c8c' :
-	           feature.addedData.elements > 2    ? '#ff9f9f' :
+	    return feature.addedData.elements > 18   ? '#992626' :
+	           feature.addedData.elements > 15   ? '#cc3333' :
+	           feature.addedData.elements > 10   ? '#ff4040' :
+	           feature.addedData.elements > 7   ? '#ff6666' :
+	           feature.addedData.elements > 3    ? '#ff8c8c' :
 	                      						   '#ffb2b2';
 	}
 	else if ( age_user >= 11 && age_user <= 14 ){
-	    return feature.addedData.elements > 20   ? '#cf338b' :
-	           feature.addedData.elements > 17   ? '#e6399b' :
-	           feature.addedData.elements > 13   ? '#e84ca5' :
-	           feature.addedData.elements > 10   ? '#eb60af' :
-	           feature.addedData.elements > 7    ? '#ed74b9' :
-	           feature.addedData.elements > 4    ? '#f088c3' :
-	           feature.addedData.elements > 2    ? '#f29ccd' :
+	    return feature.addedData.elements > 18   ? '#8a225d' :
+	           feature.addedData.elements > 15   ? '#b82d7c' :
+	           feature.addedData.elements > 10   ? '#e6399b' :
+	           feature.addedData.elements > 7    ? '#eb60af' :
+	           feature.addedData.elements > 3    ? '#f088c3' :
 	                      						   '#f5afd7';
 	}
 	else if ( age_user >= 15 && age_user <= 17 ){
-	    return feature.addedData.elements > 20   ? '#e57939' :
-	           feature.addedData.elements > 17   ? '#ff8740' :
-	           feature.addedData.elements > 13   ? '#ff9353' :
-	           feature.addedData.elements > 10   ? '#ff9f66' :
-	           feature.addedData.elements > 7    ? '#ffab79' :
-	           feature.addedData.elements > 4    ? '#ffb78c' :
-	           feature.addedData.elements > 2    ? '#ffc39f' :
-	                      						   '#ffcfb2';
+	    return feature.addedData.elements > 18   ? '#7f4320' :
+	           feature.addedData.elements > 15   ? '#b25e2c' :
+	           feature.addedData.elements > 10   ? '#e57939' :
+	           feature.addedData.elements > 7    ? '#ff9353' :
+	           feature.addedData.elements > 3    ? '#ffab79' :
+	                      						   '#ffc39f';
 	}
 	else if ( age_user >= 18 && age_user <= 24 ){
-	    return feature.addedData.elements > 20   ? '#31c56c' :
-	           feature.addedData.elements > 17   ? '#37db79' :
-	           feature.addedData.elements > 13   ? '#4bde86' :
-	           feature.addedData.elements > 10   ? '#5ee293' :
-	           feature.addedData.elements > 7    ? '#73e5a1' :
-	           feature.addedData.elements > 4    ? '#87e9ae' :
-	           feature.addedData.elements > 2    ? '#9bedbc' :
-	                      						   '#aff0c9';
+	    return feature.addedData.elements > 18   ? '#1b6d3c' :
+	           feature.addedData.elements > 15   ? '#269954' :
+	           feature.addedData.elements > 10   ? '#31c56c' :
+	           feature.addedData.elements > 7    ? '#4bde86' :
+	           feature.addedData.elements > 3    ? '#73e5a1' :
+	                      						   '#9bedbc';
 	}
 	else if ( age_user >= 25 && age_user <= 34 ){
-	    return feature.addedData.elements > 20   ? '#095793' :
-	           feature.addedData.elements > 17   ? '#0b61a4' :
-	           feature.addedData.elements > 13   ? '#2370ad' :
-	           feature.addedData.elements > 10   ? '#3b80b6' :
-	           feature.addedData.elements > 7    ? '#5490bf' :
-	           feature.addedData.elements > 4    ? '#6ca0c8' :
-	           feature.addedData.elements > 2    ? '#85b0d1' :
-	                      						   '#9dbfda';
+	    return feature.addedData.elements > 18   ? '#20707b' :
+	           feature.addedData.elements > 15   ? '#2b95a4' :
+	           feature.addedData.elements > 10   ? '#36bbce' :
+	           feature.addedData.elements > 7    ? '#5ec8d7' :
+	           feature.addedData.elements > 3    ? '#86d6e1' :
+	                      						   '#aee3eb';
 	}
 	else if ( age_user >= 35 && age_user <= 49 ){
-	    return feature.addedData.elements > 20   ? '#095793' :
-	           feature.addedData.elements > 17   ? '#0b61a4' :
-	           feature.addedData.elements > 13   ? '#2370ad' :
-	           feature.addedData.elements > 10   ? '#3b80b6' :
-	           feature.addedData.elements > 7    ? '#5490bf' :
-	           feature.addedData.elements > 4    ? '#6ca0c8' :
-	           feature.addedData.elements > 2    ? '#85b0d1' :
-	                      						   '#9dbfda';
+	    return feature.addedData.elements > 18   ? '#6f227e' :
+	           feature.addedData.elements > 15   ? '#942da8' :
+	           feature.addedData.elements > 10   ? '#b939d3' :
+	           feature.addedData.elements > 7    ? '#c760db' :
+	           feature.addedData.elements > 3    ? '#d588e4' :
+	                      						   '#e3afed';
 	}
 	else if ( age_user >= 50 && age_user <= 64 ){
-	    return feature.addedData.elements > 20   ? '#095793' :
-	           feature.addedData.elements > 17   ? '#0b61a4' :
-	           feature.addedData.elements > 13   ? '#2370ad' :
-	           feature.addedData.elements > 10   ? '#3b80b6' :
-	           feature.addedData.elements > 7    ? '#5490bf' :
-	           feature.addedData.elements > 4    ? '#6ca0c8' :
-	           feature.addedData.elements > 2    ? '#85b0d1' :
-	                      						   '#9dbfda';
+	    return feature.addedData.elements > 18   ? '#7f5c20' :
+	           feature.addedData.elements > 15   ? '#b2812c' :
+	           feature.addedData.elements > 10   ? '#e5a639' :
+	           feature.addedData.elements > 7    ? '#ffc053' :
+	           feature.addedData.elements > 3    ? '#ffce79' :
+	                      						   '#ffdc9f';
 	}
 	else if ( age_user >= 65 && age_user <= 77 ){
-	    return feature.addedData.elements > 20   ? '#095793' :
-	           feature.addedData.elements > 17   ? '#0b61a4' :
-	           feature.addedData.elements > 13   ? '#2370ad' :
-	           feature.addedData.elements > 10   ? '#3b80b6' :
-	           feature.addedData.elements > 7    ? '#5490bf' :
-	           feature.addedData.elements > 4    ? '#6ca0c8' :
-	           feature.addedData.elements > 2    ? '#85b0d1' :
-	                      						   '#9dbfda';
+	    return feature.addedData.elements > 18   ? '#1f5d03' :
+	           feature.addedData.elements > 15   ? '#297c04' :
+	           feature.addedData.elements > 10   ? '#349c06' :
+	           feature.addedData.elements > 7    ? '#5caf37' :
+	           feature.addedData.elements > 3    ? '#85c369' :
+	                      						   '#add79b';
 	}
 }
 
@@ -243,17 +267,20 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 	data.bars = bars;
 	data.bars.markers = [];
 	data.bars.ages = [18, 35];
+	$('#menu ul').append('<li><img src="Icons/barsjeunes.png" /></li>');
 
 	$.getJSON("./data/les_salles_de_cinemas_en_ile-de-france.geojson", function(cinemas) {
 		data.cinemas = cinemas;
 		data.cinemas.markers = [];
 		data.cinemas.ages = [7, 77];
+		$('#menu ul').append('<li><img src="Icons/cinema.png" /></li>');
 	});
 
 	$.getJSON("./data/manege_et_jeux.geojson", function(maneges) {
 		data.maneges = maneges;
 		data.maneges.markers = [];
 		data.maneges.ages = [7, 10];
+		$('#menu ul').append('<li><img src="Icons/manege.png" /></li>');
 	});
 }).done(function(){
 	function get_data(layer){
@@ -329,7 +356,8 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 		}
 
 		$('#timeline').on('change', function(){
-			age_user = $(this).val();
+			age_user = (numbersToShow[$('#timeline').val()-1][0] + numbersToShow[$('#timeline').val()-1][1]) /2;
+			$('#menu ul li').css('background-color', getIconColor());
 
 			for( var j = 0 in layers){
 				parArrondissement[j].elements = 0;
@@ -347,6 +375,9 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 				});
 			}
 		});
+
+
+		$('#menu ul li').css('background-color', getIconColor());
 	});
 });
 

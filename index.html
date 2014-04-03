@@ -3,6 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Cartoviz</title>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
@@ -21,16 +22,7 @@
 		</header>
 		<section id="framecontentLeft">
 			<nav id="menu">
-				<ul>
-					<li><img src="icons/bar.png" alt="pic1"></li>
-					<li><img src="icons/barjeune.png" alt="pic2"></li>
-					<li><img src="icons/clubdesport.png" alt="pic3"></li>
-					<li><img src="icons/creche.png" alt="pic4"></li>
-					<li><img src="icons/fadtfood.png" alt="pic1"></li>
-					<li><img src="icons/disco.png" alt="pic5"></li>
-					<li><img src="icons/parc.png" alt="pic6"></li>
-					<li><img src="icons/Theatre.png" alt="pic7"></li>
-				</ul>
+				<ul></ul>
 			</nav>
 		</section>
 		<section id="framecontentRight">
@@ -38,7 +30,17 @@
 				<div id="map"></div>
 			</section>
 			<footer>
-				<input id="timeline" type="range" value="20" max="77" min="7" step="1">
+				<input id="timeline" type="range" value="4" max="8" min="1" step="1">
+				<p id="numbers">
+					<span>7 - 10</span>
+					<span>11 - 14</span>
+					<span>15 - 17</span>
+					<span>18 - 24</span>
+					<span>25 - 34</span>
+					<span>35 - 49</span>
+					<span>50 - 64</span>
+					<span>65 - 77</span>
+				</p>
 			</footer>
 		</section>
 		<script src="script/main.js"></script>
