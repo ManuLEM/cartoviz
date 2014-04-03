@@ -118,7 +118,8 @@ var number = 0;
 var prev_feature = false;
 var prev_color = false;
 var data = {};
-var age_user = 20;
+var age_user = $('#timeline').val();
+var layers = [];
 
 function pointIsInPoly(p, polygon) {
     var isInside = false;
@@ -148,14 +149,86 @@ function pointIsInPoly(p, polygon) {
 }
 
 function getColor(feature) {
-    return feature.addedData.elements > 20   ? '#095793' :
-           feature.addedData.elements > 17   ? '#0b61a4' :
-           feature.addedData.elements > 13   ? '#2370ad' :
-           feature.addedData.elements > 10   ? '#3b80b6' :
-           feature.addedData.elements > 7    ? '#5490bf' :
-           feature.addedData.elements > 4    ? '#6ca0c8' :
-           feature.addedData.elements > 2    ? '#85b0d1' :
-                      						   '#9dbfda';
+	if ( age_user >= 7 && age_user <= 10 ){
+	    return feature.addedData.elements > 20   ? '#e53939' :
+	           feature.addedData.elements > 17   ? '#ff4040' :
+	           feature.addedData.elements > 13   ? '#ff5353' :
+	           feature.addedData.elements > 10   ? '#ff6666' :
+	           feature.addedData.elements > 7    ? '#ff7979' :
+	           feature.addedData.elements > 4    ? '#ff8c8c' :
+	           feature.addedData.elements > 2    ? '#ff9f9f' :
+	                      						   '#ffb2b2';
+	}
+	else if ( age_user >= 11 && age_user <= 14 ){
+	    return feature.addedData.elements > 20   ? '#cf338b' :
+	           feature.addedData.elements > 17   ? '#e6399b' :
+	           feature.addedData.elements > 13   ? '#e84ca5' :
+	           feature.addedData.elements > 10   ? '#eb60af' :
+	           feature.addedData.elements > 7    ? '#ed74b9' :
+	           feature.addedData.elements > 4    ? '#f088c3' :
+	           feature.addedData.elements > 2    ? '#f29ccd' :
+	                      						   '#f5afd7';
+	}
+	else if ( age_user >= 15 && age_user <= 17 ){
+	    return feature.addedData.elements > 20   ? '#e57939' :
+	           feature.addedData.elements > 17   ? '#ff8740' :
+	           feature.addedData.elements > 13   ? '#ff9353' :
+	           feature.addedData.elements > 10   ? '#ff9f66' :
+	           feature.addedData.elements > 7    ? '#ffab79' :
+	           feature.addedData.elements > 4    ? '#ffb78c' :
+	           feature.addedData.elements > 2    ? '#ffc39f' :
+	                      						   '#ffcfb2';
+	}
+	else if ( age_user >= 18 && age_user <= 24 ){
+	    return feature.addedData.elements > 20   ? '#31c56c' :
+	           feature.addedData.elements > 17   ? '#37db79' :
+	           feature.addedData.elements > 13   ? '#4bde86' :
+	           feature.addedData.elements > 10   ? '#5ee293' :
+	           feature.addedData.elements > 7    ? '#73e5a1' :
+	           feature.addedData.elements > 4    ? '#87e9ae' :
+	           feature.addedData.elements > 2    ? '#9bedbc' :
+	                      						   '#aff0c9';
+	}
+	else if ( age_user >= 25 && age_user <= 34 ){
+	    return feature.addedData.elements > 20   ? '#095793' :
+	           feature.addedData.elements > 17   ? '#0b61a4' :
+	           feature.addedData.elements > 13   ? '#2370ad' :
+	           feature.addedData.elements > 10   ? '#3b80b6' :
+	           feature.addedData.elements > 7    ? '#5490bf' :
+	           feature.addedData.elements > 4    ? '#6ca0c8' :
+	           feature.addedData.elements > 2    ? '#85b0d1' :
+	                      						   '#9dbfda';
+	}
+	else if ( age_user >= 35 && age_user <= 49 ){
+	    return feature.addedData.elements > 20   ? '#095793' :
+	           feature.addedData.elements > 17   ? '#0b61a4' :
+	           feature.addedData.elements > 13   ? '#2370ad' :
+	           feature.addedData.elements > 10   ? '#3b80b6' :
+	           feature.addedData.elements > 7    ? '#5490bf' :
+	           feature.addedData.elements > 4    ? '#6ca0c8' :
+	           feature.addedData.elements > 2    ? '#85b0d1' :
+	                      						   '#9dbfda';
+	}
+	else if ( age_user >= 50 && age_user <= 64 ){
+	    return feature.addedData.elements > 20   ? '#095793' :
+	           feature.addedData.elements > 17   ? '#0b61a4' :
+	           feature.addedData.elements > 13   ? '#2370ad' :
+	           feature.addedData.elements > 10   ? '#3b80b6' :
+	           feature.addedData.elements > 7    ? '#5490bf' :
+	           feature.addedData.elements > 4    ? '#6ca0c8' :
+	           feature.addedData.elements > 2    ? '#85b0d1' :
+	                      						   '#9dbfda';
+	}
+	else if ( age_user >= 65 && age_user <= 77 ){
+	    return feature.addedData.elements > 20   ? '#095793' :
+	           feature.addedData.elements > 17   ? '#0b61a4' :
+	           feature.addedData.elements > 13   ? '#2370ad' :
+	           feature.addedData.elements > 10   ? '#3b80b6' :
+	           feature.addedData.elements > 7    ? '#5490bf' :
+	           feature.addedData.elements > 4    ? '#6ca0c8' :
+	           feature.addedData.elements > 2    ? '#85b0d1' :
+	                      						   '#9dbfda';
+	}
 }
 
 function removeMarkers(){
@@ -200,14 +273,14 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 	}
 
 	$.getJSON("./data/arrondissements.geojson", function(collection) {
-		var geojson = L.geoJson(collection, {
+		window.geojson = L.geoJson(collection, {
 			onEachFeature: onEachFeature,
 			style: {
 		        color: 'white',
 		        dashArray: '7',
 			    weight: 2,
 			    opacity: 1,
-			    fillOpacity: 0.8
+			    fillOpacity: 0.9
 		    }
 		}).addTo(map);
 
@@ -242,6 +315,8 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 				}
 			});
 
+			layers[number] = layer;
+
 			feature.addedData = parArrondissement[number];
 			number ++;
 			layer.setStyle({
@@ -252,6 +327,26 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 				click: clickFeature
 			});
 		}
+
+		$('#timeline').on('change', function(){
+			age_user = $(this).val();
+
+			for( var j = 0 in layers){
+				parArrondissement[j].elements = 0;
+				$.each(data, function( dataSet ){
+					for( var i = 0 in data[dataSet].features){
+						if ( data[dataSet].features[i].geometry && data[dataSet].ages[0] <= age_user && data[dataSet].ages[1] >= age_user && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layers[j].feature.geometry.coordinates[0][0]) ){	
+							parArrondissement[j].elements ++;
+						}
+					}
+				});
+				collection.features[j].addedData = parArrondissement[j];
+
+				layers[j].setStyle({
+					fillColor: getColor(collection.features[j])
+				});
+			}
+		});
 	});
 });
 
