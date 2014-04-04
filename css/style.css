@@ -45,7 +45,7 @@ h1{
 	display: inline-block;
 	width: 80%;
 	height: calc(100% - 76px);
-	margin-left: -4px;
+	margin-left: -5px;
 	vertical-align: top;
 	position: relative;
 }
@@ -80,8 +80,8 @@ footer{
 	list-style-type: none;
     width: 42px;
     height: 42px;
-    border-radius: 30px; 
-    background-color: #36bbce;
+    border-radius: 21px; 
+    background-color: #eeeeee;
     text-align: center;
     margin: 5px;
 }
@@ -147,9 +147,9 @@ footer{
 	min-width: 38px;
 }
 svg g path, #menu ul li{
-	-webkit-transition: all 400ms ease-in-out;
-	-moz-transition: all 400ms ease-in-out;
-	-o-transition: all 400ms ease-in-out;
-	-ms-transition: all 400ms ease-in-out;
-	transition: all 400ms ease-in-out;
+	-webkit-transition: all 300ms ease-in-out;
+	-moz-transition: all 300ms ease-in-out;
+	-o-transition: all 300ms ease-in-out;
+	-ms-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;
 }

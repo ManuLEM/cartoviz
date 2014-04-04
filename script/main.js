@@ -8,8 +8,9 @@ L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
 	attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
 	subdomains: '1234',
 	minZoom: 12,
-	zoom: false
+	maxZoom: 18
 }).addTo(map);
+
 
 var myLayer = L.geoJson().addTo(map);
 var parArrondissement = [
@@ -127,11 +128,30 @@ for (var i = 0; i < numbersToShow.length; i++) {
 
 $('#numbers').html( agesNumber );
 
+map._layersMaxZoom=12;
+
 for (var i = 0; i < $('#numbers span').length; i++) {
 	$('#numbers span').eq(i).css({
 		left: ((($('#numbers').width() - 29) / 7) * i)
 	});
 };
+
+map.on('zoomend', function(){
+	if (map.getZoom() <= 12) {
+		if(prev_feature && prev_color){
+			prev_feature.setStyle({ fillColor: prev_color });
+		}
+		prev_feature = false;
+		prev_color = false;
+		for(var z = 0 in parArrondissement){
+			parArrondissement[z].visible = false;
+		}
+		
+		removeMarkers();
+		map._layersMaxZoom=12;
+	};
+});
+
 var age_user = (numbersToShow[$('#timeline').val()-1][0] + numbersToShow[$('#timeline').val()-1][1]) /2;
 
 function pointIsInPoly(p, polygon) {
@@ -163,95 +183,95 @@ function pointIsInPoly(p, polygon) {
 
 function getIconColor() {
 	if ( age_user >= 7 && age_user <= 10 ){
-	    return '#ff4040';
+	    return '#e91212';
 	}
 	else if ( age_user >= 11 && age_user <= 14 ){
-	    return '#e6399b';
+	    return '#d51883';
 	}
 	else if ( age_user >= 15 && age_user <= 17 ){
-	    return '#e57939';
+	    return '#f8650f';
 	}
 	else if ( age_user >= 18 && age_user <= 24 ){
-	    return '#269954';
+	    return '#02b3cb';
 	}
 	else if ( age_user >= 25 && age_user <= 34 ){
-	    return '#2b95a4';
+	    return '#a402c5';
 	}
 	else if ( age_user >= 35 && age_user <= 49 ){
-	    return '#942da8';
+	    return '#de9b03';
 	}
 	else if ( age_user >= 50 && age_user <= 64 ){
-	    return '#b2812c';
+	    return '#349c06';
 	}
 	else if ( age_user >= 65 && age_user <= 77 ){
-	    return '#297c04';
+	    return '#6e6e6e';
 	}
 }
 
 function getColor(feature) {
 	if ( age_user >= 7 && age_user <= 10 ){
-	    return feature.addedData.elements > 18   ? '#992626' :
-	           feature.addedData.elements > 15   ? '#cc3333' :
-	           feature.addedData.elements > 10   ? '#ff4040' :
-	           feature.addedData.elements > 7   ? '#ff6666' :
-	           feature.addedData.elements > 3    ? '#ff8c8c' :
-	                      						   '#ffb2b2';
+	    return feature.addedData.elements > 18   ? '#ba0e0e' :
+	           feature.addedData.elements > 15   ? '#e91212' :
+	           feature.addedData.elements > 10   ? '#ed4141' :
+	           feature.addedData.elements > 7    ? '#f17070' :
+	           feature.addedData.elements > 3    ? '#f6a0a0' :
+	                      						   '#facfcf';
 	}
 	else if ( age_user >= 11 && age_user <= 14 ){
-	    return feature.addedData.elements > 18   ? '#8a225d' :
-	           feature.addedData.elements > 15   ? '#b82d7c' :
-	           feature.addedData.elements > 10   ? '#e6399b' :
-	           feature.addedData.elements > 7    ? '#eb60af' :
-	           feature.addedData.elements > 3    ? '#f088c3' :
-	                      						   '#f5afd7';
+	    return feature.addedData.elements > 18   ? '#aa1368' :
+	           feature.addedData.elements > 15   ? '#d51883' :
+	           feature.addedData.elements > 10   ? '#dd469b' :
+	           feature.addedData.elements > 7    ? '#e574b4' :
+	           feature.addedData.elements > 3    ? '#eea2cd' :
+	                      						   '#f6d0e6';
 	}
 	else if ( age_user >= 15 && age_user <= 17 ){
-	    return feature.addedData.elements > 18   ? '#7f4320' :
-	           feature.addedData.elements > 15   ? '#b25e2c' :
-	           feature.addedData.elements > 10   ? '#e57939' :
-	           feature.addedData.elements > 7    ? '#ff9353' :
-	           feature.addedData.elements > 3    ? '#ffab79' :
-	                      						   '#ffc39f';
+	    return feature.addedData.elements > 18   ? '#c6500c' :
+	           feature.addedData.elements > 15   ? '#f8650f' :
+	           feature.addedData.elements > 10   ? '#f9833e' :
+	           feature.addedData.elements > 7    ? '#faa26f' :
+	           feature.addedData.elements > 3    ? '#fcc19f' :
+	                      						   '#fde0cf';
 	}
 	else if ( age_user >= 18 && age_user <= 24 ){
-	    return feature.addedData.elements > 18   ? '#1b6d3c' :
-	           feature.addedData.elements > 15   ? '#269954' :
-	           feature.addedData.elements > 10   ? '#31c56c' :
-	           feature.addedData.elements > 7    ? '#4bde86' :
-	           feature.addedData.elements > 3    ? '#73e5a1' :
-	                      						   '#9bedbc';
+	    return feature.addedData.elements > 18   ? '#018fa2' :
+	           feature.addedData.elements > 15   ? '#02b3cb' :
+	           feature.addedData.elements > 10   ? '#34c2d5' :
+	           feature.addedData.elements > 7    ? '#67d1df' :
+	           feature.addedData.elements > 3    ? '#99e0ea' :
+	                      						   '#cceff4';
 	}
 	else if ( age_user >= 25 && age_user <= 34 ){
-	    return feature.addedData.elements > 18   ? '#20707b' :
-	           feature.addedData.elements > 15   ? '#2b95a4' :
-	           feature.addedData.elements > 10   ? '#36bbce' :
-	           feature.addedData.elements > 7    ? '#5ec8d7' :
-	           feature.addedData.elements > 3    ? '#86d6e1' :
-	                      						   '#aee3eb';
+	    return feature.addedData.elements > 18   ? '#83019d' :
+	           feature.addedData.elements > 15   ? '#a402c5' :
+	           feature.addedData.elements > 10   ? '#b634d0' :
+	           feature.addedData.elements > 7    ? '#c867dc' :
+	           feature.addedData.elements > 3    ? '#da99e7' :
+	                      						   '#ecccf3';
 	}
 	else if ( age_user >= 35 && age_user <= 49 ){
-	    return feature.addedData.elements > 18   ? '#6f227e' :
-	           feature.addedData.elements > 15   ? '#942da8' :
-	           feature.addedData.elements > 10   ? '#b939d3' :
-	           feature.addedData.elements > 7    ? '#c760db' :
-	           feature.addedData.elements > 3    ? '#d588e4' :
-	                      						   '#e3afed';
+	    return feature.addedData.elements > 18   ? '#b17c02' :
+	           feature.addedData.elements > 15   ? '#de9b03' :
+	           feature.addedData.elements > 10   ? '#e4af35' :
+	           feature.addedData.elements > 7    ? '#ebc367' :
+	           feature.addedData.elements > 3    ? '#f1d79a' :
+	                      						   '#f8ebcc';
 	}
 	else if ( age_user >= 50 && age_user <= 64 ){
-	    return feature.addedData.elements > 18   ? '#7f5c20' :
-	           feature.addedData.elements > 15   ? '#b2812c' :
-	           feature.addedData.elements > 10   ? '#e5a639' :
-	           feature.addedData.elements > 7    ? '#ffc053' :
-	           feature.addedData.elements > 3    ? '#ffce79' :
-	                      						   '#ffdc9f';
+	    return feature.addedData.elements > 18   ? '#297c04' :
+	           feature.addedData.elements > 15   ? '#349c06' :
+	           feature.addedData.elements > 10   ? '#5caf37' :
+	           feature.addedData.elements > 7    ? '#85c369' :
+	           feature.addedData.elements > 3    ? '#add79b' :
+	                      						   '#d6ebcd';
 	}
 	else if ( age_user >= 65 && age_user <= 77 ){
-	    return feature.addedData.elements > 18   ? '#1f5d03' :
-	           feature.addedData.elements > 15   ? '#297c04' :
-	           feature.addedData.elements > 10   ? '#349c06' :
-	           feature.addedData.elements > 7    ? '#5caf37' :
-	           feature.addedData.elements > 3    ? '#85c369' :
-	                      						   '#add79b';
+	    return feature.addedData.elements > 18   ? '#585858' :
+	           feature.addedData.elements > 15   ? '#6e6e6e' :
+	           feature.addedData.elements > 10   ? '#8b8b8b' :
+	           feature.addedData.elements > 7    ? '#a8a8a8' :
+	           feature.addedData.elements > 3    ? '#c5c5c5' :
+	                      						   '#e2e2e2';
 	}
 }
 
@@ -317,6 +337,7 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 
 		function clickFeature(e) {
 			var layer = e.target;
+			map._layersMaxZoom=18;
 			map.fitBounds(layer.getBounds());
 			if (parArrondissement[parseInt(layer.feature.properties.Name) - 1].visible === false) {
 				if(prev_feature && prev_color){
