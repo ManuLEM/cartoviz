@@ -267,20 +267,23 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 	data.bars = bars;
 	data.bars.markers = [];
 	data.bars.ages = [18, 35];
-	$('#menu ul').append('<li><img src="Icons/barsjeunes.png" /></li>');
+	data.bars.exists = false;
+	$('#menu ul').append('<li class="bars"><img src="Icons/barsjeunes.png" /></li>');
 
 	$.getJSON("./data/les_salles_de_cinemas_en_ile-de-france.geojson", function(cinemas) {
 		data.cinemas = cinemas;
 		data.cinemas.markers = [];
 		data.cinemas.ages = [7, 77];
-		$('#menu ul').append('<li><img src="Icons/cinema.png" /></li>');
+		data.cinemas.exists = false;
+		$('#menu ul').append('<li class="cinemas"><img src="Icons/cinema.png" /></li>');
 	});
 
 	$.getJSON("./data/manege_et_jeux.geojson", function(maneges) {
 		data.maneges = maneges;
 		data.maneges.markers = [];
 		data.maneges.ages = [7, 10];
-		$('#menu ul').append('<li><img src="Icons/manege.png" /></li>');
+		data.maneges.exists = false;
+		$('#menu ul').append('<li class="maneges"><img src="Icons/manege.png" /></li>');
 	});
 }).done(function(){
 	function get_data(layer){
@@ -300,6 +303,7 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 	}
 
 	$.getJSON("./data/arrondissements.geojson", function(collection) {
+		$('#menu ul li').hide();
 		window.geojson = L.geoJson(collection, {
 			onEachFeature: onEachFeature,
 			style: {
@@ -338,6 +342,7 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 				for( var i = 0 in data[dataSet].features){
 					if ( data[dataSet].features[i].geometry && data[dataSet].ages[0] <= age_user && data[dataSet].ages[1] >= age_user && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layer.feature.geometry.coordinates[0][0]) ){	
 						parArrondissement[number].elements ++;
+						data[dataSet].exists = true;
 					}
 				}
 			});
@@ -354,8 +359,19 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 				click: clickFeature
 			});
 		}
+		$.each(data, function( dataSet ){
+			if (data[dataSet].exists) {
+				$('#menu ul li.'+dataSet).show();
+			};
+		});
 
 		$('#timeline').on('change', function(){
+			$('#menu ul li').hide();
+			$.each(data, function( dataSet ){
+				if (data[dataSet].exists) {
+					data[dataSet].exists = false;
+				};
+			});
 			age_user = (numbersToShow[$('#timeline').val()-1][0] + numbersToShow[$('#timeline').val()-1][1]) /2;
 			$('#menu ul li').css('background-color', getIconColor());
 
@@ -365,6 +381,7 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 					for( var i = 0 in data[dataSet].features){
 						if ( data[dataSet].features[i].geometry && data[dataSet].ages[0] <= age_user && data[dataSet].ages[1] >= age_user && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layers[j].feature.geometry.coordinates[0][0]) ){	
 							parArrondissement[j].elements ++;
+							data[dataSet].exists = true;
 						}
 					}
 				});
@@ -372,6 +389,11 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 
 				layers[j].setStyle({
 					fillColor: getColor(collection.features[j])
+				});
+				$.each(data, function( dataSet ){
+					if (data[dataSet].exists) {
+						$('#menu ul li.'+dataSet).show();
+					};
 				});
 			}
 		});

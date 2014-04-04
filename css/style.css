@@ -80,11 +80,10 @@ footer{
 	list-style-type: none;
     width: 42px;
     height: 42px;
-    border-radius:         30px; 
+    border-radius: 30px; 
     background-color: #36bbce;
     text-align: center;
     margin: 5px;
-
 }
 
 #menu img{
