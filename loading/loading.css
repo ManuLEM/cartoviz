@@ -1,0 +1,44 @@
+#loading 
+{
+    background-color:white; 
+    position: center;
+    top:0;
+    left: 0;
+	height: 100%;
+   width: 100%;
+
+    -webkit-animation: loading	 10s forwards; /* Safari and Chrome */
+       -moz-animation: loading	 10s forwards; /* Firefox */
+        -ms-animation: loading	 10s forwards; /* Internet Explorer */
+         -o-animation: loading	 10s forwards; /* Opera */
+            animation: loading	 10s forwards;
+}
+
+@keyframes loading	 {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Firefox */
+@-moz-keyframes loading	 {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes loading	 {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes loading	 {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Opera */
+@-o-keyframes loading	 {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
