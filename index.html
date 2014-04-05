@@ -8,20 +8,13 @@
 		<link rel="stylesheet" href="css/style.css" />
 		<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-		<link rel="stylesheet" type="text/css" href="loading/loading.css">
-    <link rel="stylesheet" href="loading/assets/reset.css" type="text/css" />
-    <link rel="stylesheet" href="loading/assets/main.css" type="text/css" />
-
-    <link rel="stylesheet" href="loading/assets/webkit_keyframes.css" type="text/css" />
-    <link rel="stylesheet" href="loading/assets/moz_keyframes.css" type="text/css" />
-    <link rel="stylesheet" href="loading/assets/ms_keyframes.css" type="text/css" />
-    <link rel="stylesheet" href="loading/assets/o_keyframes.css" type="text/css" />
-    <link rel="stylesheet" href="loading/assets/keyframes.css" type="text/css" />
-    <link rel="stylesheet" href="loading/assets/common.css" type="text/css" />
 	</head>
 	<body>
+		<div id="loading">
+			<img src="img/timelife_big.png" id="logo_loading">
+		</div>
 		<header>
-			<div class="logo" id="logo"></div>
+			<div id="logo"></div>
 			<nav id="settings">
 				<ul>
 					<li><img src="icons/user.png" alt="setting1"></li>
@@ -39,78 +32,6 @@
 			<section id="maincontent">
 				<div id="map"></div>
 			</section>
-			<!--       LOADING        -->
-			<div id="loading">
-
-    <div id="canvas">
-        <div class="sky">
-            <div class="cloud-1"></div>
-            <div class="cloud-2"></div>
-            <div class="cloud-3"></div>
-            <div class="cloud-4"></div>
-            <div class="cloud-5"></div>
-            <div class="cloud-6"></div>
-            <div class="cloud-7"></div>
-            <div class="cloud-8"></div>
-        </div>
-
-        <div class="horizon"></div>
-
-        <div class="ground">
-            <div class="sign-best*"></div>
-            <div class="sign-no-js*"></div>
-            <div class="sign-lots-of-divs*"></div>
-            <div class="sign-all-css*"></div>
-        </div>
-
-        <!-- skeleton and shadow -->
-        <div class="shadow"></div>
-
-        <div class="me">
-
-            <div class="torso">
-                <div class="left leg">
-                    <div class="left thigh">
-                        <div class="left shin">
-                            <div class="left foot">
-                                <div class="left toes"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- left leg -->
-
-                <div class="right leg">
-                    <div class="right thigh">
-                        <div class="right shin">
-                            <div class="right foot">
-                                <div class="right toes"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- right leg -->
-
-                <div class="left arm">
-                    <div class="left bicep">
-                        <div class="left forearm"></div>
-                    </div>
-                </div> <!-- left arm -->
-
-                <div class="right arm">
-                    <div class="right bicep">
-                        <div class="right forearm"></div>
-                    </div>
-                </div> <!-- right arm -->
-
-            </div> <!-- torso -->
-        </div> <!-- me -->
-
-        <div class="overlay"></div>
-
-    </div> <!-- canvas -->
-
-</div>
-
-			<!--FIN LOADING -->
 			<footer>
 				<input id="timeline" type="range" value="4" max="8" min="1" step="1">
 				<p id="numbers">
