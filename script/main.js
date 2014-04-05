@@ -278,68 +278,56 @@ function removeMarkers(){
 	});
 }
 
-var sports = $.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", function(multi_sport) {
-	data.multi_sport = multi_sport;
-	data.multi_sport.markers = [];
-	data.multi_sport.ages = [7, 77];
-	data.multi_sport.exists = false;
-	$('#menu ul').append('<li class="multi_sport"><img src="Icons/sports.png" /> <span>Centre Sportif</span></li>');
-});
-
-var cine = $.getJSON("./data/les_salles_de_cinemas_en_ile-de-france.geojson", function(cinemas) {
-	data.cinemas = cinemas;
-	data.cinemas.markers = [];
-	data.cinemas.ages = [7, 77];
-	data.cinemas.exists = false;
-	$('#menu ul').append('<li class="cinemas"><img src="Icons/cinema.png" /> <span>Cinéma</span></li>');
-});
-
-var manege = $.getJSON("./data/manege_et_jeux.geojson", function(maneges) {
-	data.maneges = maneges;
-	data.maneges.markers = [];
-	data.maneges.ages = [7, 10];
-	data.maneges.exists = false;
-	$('#menu ul').append('<li class="maneges"><img src="Icons/manege.png" /> <span>Manège</span></li>');
-});
-
-var barjeune = $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
-	data.bars = bars;
-	data.bars.markers = [];
-	data.bars.ages = [18, 35];
-	data.bars.exists = false;
-	$('#menu ul').append('<li class="bars"><img src="Icons/barsjeunes.png" /> <span>Bar</span></li>');
-});
-
-var lieu_poker = $.getJSON("./data/poker.geojson", function(poker) {
-	data.poker = poker;
-	data.poker.markers = [];
-	data.poker.ages = [18, 77];
-	data.poker.exists = false;
-	$('#menu ul').append('<li class="poker"><img src="Icons/poker.png" /> <span>Poker</span></li>');
-});
-var pharmacies = $.getJSON("./data/carte-des-pharmacies-de-paris.geojson", function(pharmacie) {
-	data.pharmacie = pharmacie;
-	data.pharmacie.markers = [];
-	data.pharmacie.ages = [25, 49];
-	data.pharmacie.exists = false;
-	$('#menu ul').append('<li class="pharmacie"><img src="Icons/pharmacie.png" /> <span>Pharmacies</span></li>');
-});
-var hopitaux = $.getJSON("./data/les_etablissements_hospitaliers_franciliens.geojson", function(hopital) {
-	data.hopital = hopital;
-	data.hopital.markers = [];
-	data.hopital.ages = [50, 77];
-	data.hopital.exists = false;
-	$('#menu ul').append('<li class="hopital"><img src="Icons/hopital.png" /> <span>Hopitaux</span></li>');
-});
-
 $.when(
-	sports,
-	cine,
-	manege,
-	barjeune,
-	lieu_poker,
-	pharmacies,
-	hopitaux
+	$.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", function(multi_sport) {
+		data.multi_sport = multi_sport;
+		data.multi_sport.markers = [];
+		data.multi_sport.ages = [7, 77];
+		data.multi_sport.exists = false;
+		$('#menu ul').append('<li class="multi_sport"><img src="Icons/sports.png" /> <span>Centre Sportif</span></li>');
+	}),
+	$.getJSON("./data/les_salles_de_cinemas_en_ile-de-france.geojson", function(cinemas) {
+		data.cinemas = cinemas;
+		data.cinemas.markers = [];
+		data.cinemas.ages = [7, 77];
+		data.cinemas.exists = false;
+		$('#menu ul').append('<li class="cinemas"><img src="Icons/cinema.png" /> <span>Cinéma</span></li>');
+	}),
+	$.getJSON("./data/manege_et_jeux.geojson", function(maneges) {
+		data.maneges = maneges;
+		data.maneges.markers = [];
+		data.maneges.ages = [7, 10];
+		data.maneges.exists = false;
+		$('#menu ul').append('<li class="maneges"><img src="Icons/manege.png" /> <span>Manège</span></li>');
+	}),
+	$.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
+		data.bars = bars;
+		data.bars.markers = [];
+		data.bars.ages = [18, 35];
+		data.bars.exists = false;
+		$('#menu ul').append('<li class="bars"><img src="Icons/barsjeunes.png" /> <span>Bar</span></li>');
+	}),
+	$.getJSON("./data/poker.geojson", function(poker) {
+		data.poker = poker;
+		data.poker.markers = [];
+		data.poker.ages = [18, 77];
+		data.poker.exists = false;
+		$('#menu ul').append('<li class="poker"><img src="Icons/poker.png" /> <span>Poker</span></li>');
+	}),
+	$.getJSON("./data/carte-des-pharmacies-de-paris.geojson", function(pharmacie) {
+		data.pharmacie = pharmacie;
+		data.pharmacie.markers = [];
+		data.pharmacie.ages = [25, 49];
+		data.pharmacie.exists = false;
+		$('#menu ul').append('<li class="pharmacie"><img src="Icons/pharmacie.png" /> <span>Pharmacies</span></li>');
+	}),
+	$.getJSON("./data/les_etablissements_hospitaliers_franciliens.geojson", function(hopital) {
+		data.hopital = hopital;
+		data.hopital.markers = [];
+		data.hopital.ages = [50, 77];
+		data.hopital.exists = false;
+		$('#menu ul').append('<li class="hopital"><img src="Icons/hopital.png" /> <span>Hopitaux</span></li>');
+	})
 ).done(function(){
 	function get_data(layer){
 		var element_id = 0;
