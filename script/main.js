@@ -329,6 +329,13 @@ $.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", functio
 		data.hopital.exists = false;
 		$('#menu ul').append('<li class="hopital"><img src="Icons/hopital.png" /> <span>Hopitaux</span></li>');
 	});
+			$.getJSON("./data/accessibilite_des_equipements_de_la_ville_de_paris.geojson", function(handicap) {
+		data.handicap = handicap;
+		data.handicap.markers = [];
+		data.handicap.ages = [18, 77];
+		data.handicap.exists = false;
+		$('#menu ul').append('<li class="handicap"><img src="Icons/handicap.png" /> <span>Handicap</span></li>');
+	});
 }).done(function(){
 	function get_data(layer){
 		var element_id = 0;
