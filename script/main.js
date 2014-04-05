@@ -322,7 +322,7 @@ $.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", functio
 		data.pharmacie.exists = false;
 		$('#menu ul').append('<li class="pharmacie"><img src="Icons/pharmacie.png" /> <span>Pharmacies</span></li>');
 	});
-		$.getJSON("./data/etablissements-de-soins-de-courte-duree.geojson", function(hopital) {
+		$.getJSON("./data/les_etablissements_hospitaliers_franciliens.geojson", function(hopital) {
 		data.hopital = hopital;
 		data.hopital.markers = [];
 		data.hopital.ages = [10, 77];
