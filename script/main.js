@@ -308,12 +308,26 @@ $.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", functio
 		$('#menu ul').append('<li class="bars"><img src="Icons/barsjeunes.png" /> <span>Bar</span></li>');
 	});
 
-	$.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(poker) {
+	$.getJSON("./data/poker.geojson", function(poker) {
 		data.poker = poker;
 		data.poker.markers = [];
 		data.poker.ages = [18, 77];
 		data.poker.exists = false;
 		$('#menu ul').append('<li class="poker"><img src="Icons/poker.png" /> <span>Poker</span></li>');
+	});
+	$.getJSON("./data/carte-des-pharmacies-de-paris.geojson", function(pharmacie) {
+		data.pharmacie = pharmacie;
+		data.pharmacie.markers = [];
+		data.pharmacie.ages = [25, 49];
+		data.pharmacie.exists = false;
+		$('#menu ul').append('<li class="pharmacie"><img src="Icons/pharmacie.png" /> <span>Pharmacies</span></li>');
+	});
+		$.getJSON("./data/etablissements-de-soins-de-courte-duree.geojson", function(hopital) {
+		data.hopital = hopital;
+		data.hopital.markers = [];
+		data.hopital.ages = [10, 77];
+		data.hopital.exists = false;
+		$('#menu ul').append('<li class="hopital"><img src="Icons/hopital.png" /> <span>Hopitaux</span></li>');
 	});
 }).done(function(){
 	function get_data(layer){
