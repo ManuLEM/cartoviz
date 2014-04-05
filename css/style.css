@@ -75,7 +75,7 @@
 		-webkit-transform:rotate(0deg);
 	}
 	to{
-		-webkit-transform:rotate(360deg);
+		-webkit-transform:rotate(720deg);
 	}
 }
 @-moz-keyframes rotation{
@@ -83,7 +83,7 @@
 		-moz-transform:rotate(0deg);
 	}
 	to{
-		-moz-transform:rotate(360deg);			
+		-moz-transform:rotate(720deg);			
 	}
 }
 @-ms-keyframes rotation{
@@ -91,7 +91,7 @@
 		-ms-transform:rotate(0deg);
 	}
 	to{
-		-ms-transform:rotate(360deg);	
+		-ms-transform:rotate(720deg);	
 	}
 }
 @-o-keyframes rotation{
@@ -99,7 +99,7 @@
 		-o-transform:rotate(0deg);
 	}
 	to{
-		-o-transform:rotate(360deg);	
+		-o-transform:rotate(720deg);	
 	}
 }
 @keyframes rotation{
@@ -107,7 +107,7 @@
 		transform:rotate(0deg);
 	}
 	to{
-		transform:rotate(360deg);	
+		transform:rotate(720deg);	
 	}
 }
 
@@ -133,8 +133,8 @@ header{
 	background-image: url(../img/timelife.png);
 	background-repeat: no-repeat;
 	background-size: contain;
-	padding:30px; 
-	margin:0px 65px 0px;
+	padding: 25px; 
+	margin:7px 17px 0px;
 	display: inline-block;
 	vertical-align: middle;
 }
@@ -167,7 +167,7 @@ h1{
 	top: 0;
 	left: 0;
 	right: 12px;
-	bottom: 60px;
+	bottom: 80px;
 	position: absolute;
 }
 
@@ -176,7 +176,7 @@ footer{
 	bottom: 0;
 	right: 12px;
 	width: calc(100% - 12px);
-	height: 60px;
+	height: 80px;
 }
 
 * html body{ /*IE6 hack*/
@@ -197,6 +197,14 @@ footer{
     background-color: #eeeeee;
     text-align: center;
     margin: 5px;
+    position: relative;
+	cursor: pointer;
+}
+#menu li span{
+	position: absolute;
+	left: 54px;
+	top: 10px;
+	cursor: pointer;
 }
 
 #menu img{
@@ -216,6 +224,7 @@ footer{
 	display: inline-block;
 	list-style-type: none;
 	margin: 5px;
+	cursor: pointer;
 }
 
 #timeline{
@@ -252,13 +261,40 @@ footer{
 #numbers{
 	width: 100%;
 	position: relative;
+	white-space: nowrap;
 }
 #numbers span{
 	position: absolute;
-	font-size: 12px;
+	font-size: 20px;
 	margin-left: -3px;
 	min-width: 38px;
+	cursor: pointer;
 }
+.petits{
+	color: #e91212;
+}
+.pre_ados{
+	color: #d51883;
+}
+.ados{
+	color: #f8650f;
+}
+.jeunes_adultes{
+	color: #02b3cb;
+}
+.jeunes_parents{
+	color: #a402c5;
+}
+	.parents{
+	color: #de9b03;
+}
+.fin_de_carriere{
+	color: #349c06;
+}
+.grands_parents{
+	color: #6e6e6e;
+}
+
 svg g path, #menu ul li{
 	-webkit-transition: all 300ms ease-in-out;
 	-moz-transition: all 300ms ease-in-out;
@@ -274,20 +310,23 @@ svg g path, #menu ul li{
 	height: 100%;
 	background-color: #ffffff;
 	text-align: center;
-	-webkit-animation: intro 5s ease-in;
-	-moz-animation: intro 5s ease-in;
-	-ms-animation: intro 5s ease-in;
-	-o-animation: intro 5s ease-in;
-	animation: intro 5s ease-in;
+	-webkit-animation: intro 0.5s ease-in;
+	-moz-animation: intro 0.5s ease-in;
+	-ms-animation: intro 0.5s ease-in;
+	-o-animation: intro 0.5s ease-in;
+	animation: intro 0.5s ease-in;
 	z-index: -1;
 	opacity: 0;
 }
 #logo_loading{
 	position: relative;
 	top: calc(50% - 125px);
-	-webkit-animation: rotation 3.7s ease-in;
-	-moz-animation: rotation 3.7s ease-in;
-	-ms-animation: rotation 3.7s ease-in;
-	-o-animation: rotation 3.7s ease-in;
-	animation: rotation 3.7s ease-in;
+	-webkit-animation: rotation 0.2s ease-in-out;
+	-moz-animation: rotation 0.2s ease-in-out;
+	-ms-animation: rotation 0.2s ease-in-out;
+	-o-animation: rotation 0.2s ease-in-out;
+	animation: rotation 0.2s ease-in-out;
+}
+.leaflet-control-zoom.leaflet-bar.leaflet-control{
+	display: none;
 }

@@ -11,7 +11,6 @@ L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
 	maxZoom: 18
 }).addTo(map);
 
-
 var myLayer = L.geoJson().addTo(map);
 var parArrondissement = [
 	{
@@ -122,22 +121,18 @@ var data = {};
 var layers = [];
 var agesNumber = '';
 var numbersToShow = [[7,10], [11,14], [15,17], [18,24], [25,34], [35,49], [50,64], [65,77]];
-for (var i = 0; i < numbersToShow.length; i++) {
-	agesNumber += "<span>"+ numbersToShow[i][0] +" - "+ numbersToShow[i][1] +"</span>";
-};
-
-$('#numbers').html( agesNumber );
-
-map._layersMaxZoom=12;
 
 for (var i = 0; i < $('#numbers span').length; i++) {
 	$('#numbers span').eq(i).css({
-		left: ((($('#numbers').width() - 29) / 7) * i)
+		left: ((($('#numbers').width() - 38) / 7) * i) - 10
 	});
 };
 
+map._layersMaxZoom=12;
+
 map.on('zoomend', function(){
 	if (map.getZoom() <= 12) {
+		$('.leaflet-control-zoom.leaflet-bar.leaflet-control').hide();
 		if(prev_feature && prev_color){
 			prev_feature.setStyle({ fillColor: prev_color });
 		}
@@ -210,67 +205,67 @@ function getIconColor() {
 
 function getColor(feature) {
 	if ( age_user >= 7 && age_user <= 10 ){
-	    return feature.addedData.elements > 18   ? '#ba0e0e' :
-	           feature.addedData.elements > 15   ? '#e91212' :
-	           feature.addedData.elements > 10   ? '#ed4141' :
-	           feature.addedData.elements > 7    ? '#f17070' :
-	           feature.addedData.elements > 3    ? '#f6a0a0' :
+	    return feature.addedData.elements > 100  ? '#ba0e0e' :
+	           feature.addedData.elements > 75   ? '#e91212' :
+	           feature.addedData.elements > 50   ? '#ed4141' :
+	           feature.addedData.elements > 30   ? '#f17070' :
+	           feature.addedData.elements > 15   ? '#f6a0a0' :
 	                      						   '#facfcf';
 	}
 	else if ( age_user >= 11 && age_user <= 14 ){
-	    return feature.addedData.elements > 18   ? '#aa1368' :
-	           feature.addedData.elements > 15   ? '#d51883' :
-	           feature.addedData.elements > 10   ? '#dd469b' :
-	           feature.addedData.elements > 7    ? '#e574b4' :
-	           feature.addedData.elements > 3    ? '#eea2cd' :
+	    return feature.addedData.elements > 100  ? '#aa1368' :
+	           feature.addedData.elements > 75   ? '#d51883' :
+	           feature.addedData.elements > 50   ? '#dd469b' :
+	           feature.addedData.elements > 30   ? '#e574b4' :
+	           feature.addedData.elements > 15   ? '#eea2cd' :
 	                      						   '#f6d0e6';
 	}
 	else if ( age_user >= 15 && age_user <= 17 ){
-	    return feature.addedData.elements > 18   ? '#c6500c' :
-	           feature.addedData.elements > 15   ? '#f8650f' :
-	           feature.addedData.elements > 10   ? '#f9833e' :
-	           feature.addedData.elements > 7    ? '#faa26f' :
-	           feature.addedData.elements > 3    ? '#fcc19f' :
+	    return feature.addedData.elements > 100  ? '#c6500c' :
+	           feature.addedData.elements > 75   ? '#f8650f' :
+	           feature.addedData.elements > 50   ? '#f9833e' :
+	           feature.addedData.elements > 30   ? '#faa26f' :
+	           feature.addedData.elements > 15   ? '#fcc19f' :
 	                      						   '#fde0cf';
 	}
 	else if ( age_user >= 18 && age_user <= 24 ){
-	    return feature.addedData.elements > 18   ? '#018fa2' :
-	           feature.addedData.elements > 15   ? '#02b3cb' :
-	           feature.addedData.elements > 10   ? '#34c2d5' :
-	           feature.addedData.elements > 7    ? '#67d1df' :
-	           feature.addedData.elements > 3    ? '#99e0ea' :
+	    return feature.addedData.elements > 100  ? '#018fa2' :
+	           feature.addedData.elements > 75   ? '#02b3cb' :
+	           feature.addedData.elements > 50   ? '#34c2d5' :
+	           feature.addedData.elements > 30   ? '#67d1df' :
+	           feature.addedData.elements > 15   ? '#99e0ea' :
 	                      						   '#cceff4';
 	}
 	else if ( age_user >= 25 && age_user <= 34 ){
-	    return feature.addedData.elements > 18   ? '#83019d' :
-	           feature.addedData.elements > 15   ? '#a402c5' :
-	           feature.addedData.elements > 10   ? '#b634d0' :
-	           feature.addedData.elements > 7    ? '#c867dc' :
-	           feature.addedData.elements > 3    ? '#da99e7' :
+	    return feature.addedData.elements > 100  ? '#83019d' :
+	           feature.addedData.elements > 75   ? '#a402c5' :
+	           feature.addedData.elements > 50   ? '#b634d0' :
+	           feature.addedData.elements > 30   ? '#c867dc' :
+	           feature.addedData.elements > 15   ? '#da99e7' :
 	                      						   '#ecccf3';
 	}
 	else if ( age_user >= 35 && age_user <= 49 ){
-	    return feature.addedData.elements > 18   ? '#b17c02' :
-	           feature.addedData.elements > 15   ? '#de9b03' :
-	           feature.addedData.elements > 10   ? '#e4af35' :
-	           feature.addedData.elements > 7    ? '#ebc367' :
-	           feature.addedData.elements > 3    ? '#f1d79a' :
+	    return feature.addedData.elements > 100  ? '#b17c02' :
+	           feature.addedData.elements > 75   ? '#de9b03' :
+	           feature.addedData.elements > 50   ? '#e4af35' :
+	           feature.addedData.elements > 30   ? '#ebc367' :
+	           feature.addedData.elements > 15   ? '#f1d79a' :
 	                      						   '#f8ebcc';
 	}
 	else if ( age_user >= 50 && age_user <= 64 ){
-	    return feature.addedData.elements > 18   ? '#297c04' :
-	           feature.addedData.elements > 15   ? '#349c06' :
-	           feature.addedData.elements > 10   ? '#5caf37' :
-	           feature.addedData.elements > 7    ? '#85c369' :
-	           feature.addedData.elements > 3    ? '#add79b' :
+	    return feature.addedData.elements > 100  ? '#297c04' :
+	           feature.addedData.elements > 75   ? '#349c06' :
+	           feature.addedData.elements > 50   ? '#5caf37' :
+	           feature.addedData.elements > 30   ? '#85c369' :
+	           feature.addedData.elements > 15   ? '#add79b' :
 	                      						   '#d6ebcd';
 	}
 	else if ( age_user >= 65 && age_user <= 77 ){
-	    return feature.addedData.elements > 18   ? '#585858' :
-	           feature.addedData.elements > 15   ? '#6e6e6e' :
-	           feature.addedData.elements > 10   ? '#8b8b8b' :
-	           feature.addedData.elements > 7    ? '#a8a8a8' :
-	           feature.addedData.elements > 3    ? '#c5c5c5' :
+	    return feature.addedData.elements > 100  ? '#585858' :
+	           feature.addedData.elements > 75   ? '#6e6e6e' :
+	           feature.addedData.elements > 50   ? '#8b8b8b' :
+	           feature.addedData.elements > 30   ? '#a8a8a8' :
+	           feature.addedData.elements > 15   ? '#c5c5c5' :
 	                      						   '#e2e2e2';
 	}
 }
@@ -282,20 +277,19 @@ function removeMarkers(){
 		}
 	});
 }
-
-$.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
-	data.bars = bars;
-	data.bars.markers = [];
-	data.bars.ages = [18, 35];
-	data.bars.exists = false;
-	$('#menu ul').append('<li class="bars"><img src="Icons/barsjeunes.png" /></li>');
+$.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", function(equipement_sportif) {
+	data.equipement_sportif = equipement_sportif;
+	data.equipement_sportif.markers = [];
+	data.equipement_sportif.ages = [7, 77];
+	data.equipement_sportif.exists = false;
+	$('#menu ul').append('<li class="equipement_sportif"><img src="Icons/manege.png" /> <span>Centre Sportif</span></li>');
 
 	$.getJSON("./data/les_salles_de_cinemas_en_ile-de-france.geojson", function(cinemas) {
 		data.cinemas = cinemas;
 		data.cinemas.markers = [];
 		data.cinemas.ages = [7, 77];
 		data.cinemas.exists = false;
-		$('#menu ul').append('<li class="cinemas"><img src="Icons/cinema.png" /></li>');
+		$('#menu ul').append('<li class="cinemas"><img src="Icons/cinema.png" /> <span>Cinémas</span></li>');
 	});
 
 	$.getJSON("./data/manege_et_jeux.geojson", function(maneges) {
@@ -303,7 +297,15 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 		data.maneges.markers = [];
 		data.maneges.ages = [7, 10];
 		data.maneges.exists = false;
-		$('#menu ul').append('<li class="maneges"><img src="Icons/manege.png" /></li>');
+		$('#menu ul').append('<li class="maneges"><img src="Icons/manege.png" /> <span>Manèges</span></li>');
+	});
+
+	$.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
+		data.bars = bars;
+		data.bars.markers = [];
+		data.bars.ages = [18, 35];
+		data.bars.exists = false;
+		$('#menu ul').append('<li class="bars"><img src="Icons/barsjeunes.png" /> <span>Bars</span></li>');
 	});
 }).done(function(){
 	function get_data(layer){
@@ -355,6 +357,7 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 				get_data(layer);
 
 				parArrondissement[parseInt(layer.feature.properties.Name) - 1].visible = true;
+				$('.leaflet-control-zoom.leaflet-bar.leaflet-control').show();
 			};
 		}
 
@@ -386,7 +389,7 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 			};
 		});
 
-		$('#timeline').on('change', function(){
+		function ageChange(){
 			$('#menu ul li').hide();
 			$.each(data, function( dataSet ){
 				if (data[dataSet].exists) {
@@ -394,7 +397,10 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 				};
 			});
 			age_user = (numbersToShow[$('#timeline').val()-1][0] + numbersToShow[$('#timeline').val()-1][1]) /2;
-			$('#menu ul li').css('background-color', getIconColor());
+			$('#menu ul li').css({
+				'background-color': getIconColor(),
+				'color': getIconColor()
+			});
 
 			for( var j = 0 in layers){
 				parArrondissement[j].elements = 0;
@@ -417,10 +423,21 @@ $.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
 					};
 				});
 			}
+		}
+
+		$('#timeline').on('change', function(){
+			ageChange();
 		});
 
+		$('#numbers span').on('click', function(){
+			$('#timeline').val($(this).data('value'));
+			ageChange();
+		});
 
-		$('#menu ul li').css('background-color', getIconColor());
+		$('#menu ul li').css({
+			'background-color': getIconColor(),
+			'color': getIconColor()
+		});
 	});
 });
 
