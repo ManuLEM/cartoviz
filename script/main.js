@@ -277,19 +277,19 @@ function removeMarkers(){
 		}
 	});
 }
-$.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", function(equipement_sportif) {
-	data.equipement_sportif = equipement_sportif;
-	data.equipement_sportif.markers = [];
-	data.equipement_sportif.ages = [7, 77];
-	data.equipement_sportif.exists = false;
-	$('#menu ul').append('<li class="equipement_sportif"><img src="Icons/manege.png" /> <span>Centre Sportif</span></li>');
+$.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", function(multi_sport) {
+	data.multi_sport = multi_sport;
+	data.multi_sport.markers = [];
+	data.multi_sport.ages = [7, 77];
+	data.multi_sport.exists = false;
+	$('#menu ul').append('<li class="multi_sport"><img src="Icons/sports.png" /> <span>Centre Sportif</span></li>');
 
 	$.getJSON("./data/les_salles_de_cinemas_en_ile-de-france.geojson", function(cinemas) {
 		data.cinemas = cinemas;
 		data.cinemas.markers = [];
 		data.cinemas.ages = [7, 77];
 		data.cinemas.exists = false;
-		$('#menu ul').append('<li class="cinemas"><img src="Icons/cinema.png" /> <span>Cinémas</span></li>');
+		$('#menu ul').append('<li class="cinemas"><img src="Icons/cinema.png" /> <span>Cinéma</span></li>');
 	});
 
 	$.getJSON("./data/manege_et_jeux.geojson", function(maneges) {
@@ -297,7 +297,7 @@ $.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", functio
 		data.maneges.markers = [];
 		data.maneges.ages = [7, 10];
 		data.maneges.exists = false;
-		$('#menu ul').append('<li class="maneges"><img src="Icons/manege.png" /> <span>Manèges</span></li>');
+		$('#menu ul').append('<li class="maneges"><img src="Icons/manege.png" /> <span>Manège</span></li>');
 	});
 
 	$.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
@@ -305,7 +305,15 @@ $.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", functio
 		data.bars.markers = [];
 		data.bars.ages = [18, 35];
 		data.bars.exists = false;
-		$('#menu ul').append('<li class="bars"><img src="Icons/barsjeunes.png" /> <span>Bars</span></li>');
+		$('#menu ul').append('<li class="bars"><img src="Icons/barsjeunes.png" /> <span>Bar</span></li>');
+	});
+
+	$.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(poker) {
+		data.poker = poker;
+		data.poker.markers = [];
+		data.poker.ages = [18, 77];
+		data.poker.exists = false;
+		$('#menu ul').append('<li class="poker"><img src="Icons/poker.png" /> <span>Poker</span></li>');
 	});
 }).done(function(){
 	function get_data(layer){

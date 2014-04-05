@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0">
+<Document>
+<name>Adresses geocodees</name>
+<description>Adresses</description>
+<Placemark>
+<name>L’Aviation Club de France</name>
+<description>Pionnier du Poker, l’Aviation Club de France est le cercle incontournable de la capitale. L’ambiance est feutrée et fait penser un peu à une maison close. Vous y trouverez des tables de cash-games et des tournois de poker tous les jours. C’est un haut lieu du poker au niveau mondial avec des tournois de classe internationale qui y sont joués 4 fois par an. </description>
+<Point><coordinates>2.3015722000000096,48.8721143</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>Le cercle Cadet</name>
+<description>Installé dans un bâtiment Art déco des années 1920, il s’agit de notre coup de coeur. Le club propose une poker room de 30 tables réparties sur trois étages. Le décor est ultra épuré et  on ne se sent à aucun moment à l’étroit ce qui est assez rare pour être souligné.</description>
+<Point><coordinates>2.3429261999999653,48.8748233</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>Le cercle Clichy Montmartre</name>
+<description>Situé au cœur du quartier de Clichy, l’endroit est reconnu comme l’un des plus anciens cercles de jeux parisiens. Il s’agit du cercle le plus accessible notamment pour les petits budgets. On y trouve 14 tables surplombées par une superbe verrière  datant de 1901.</description>
+<Point><coordinates>2.3277857000000495,48.8830515</coordinates></Point>
+</Placemark>
+</Document>
+</kml>

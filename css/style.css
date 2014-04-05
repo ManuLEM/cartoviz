@@ -205,6 +205,8 @@ footer{
 	left: 54px;
 	top: 10px;
 	cursor: pointer;
+	width: 150px;
+	text-align: left;
 }
 
 #menu img{
