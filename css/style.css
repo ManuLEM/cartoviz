@@ -274,21 +274,20 @@ svg g path, #menu ul li{
 	height: 100%;
 	background-color: #ffffff;
 	text-align: center;
-	-webkit-animation: intro 1s ease-in;
-	-moz-animation: intro 1s ease-in;
-	-ms-animation: intro 1s ease-in;
-	-o-animation: intro 1s ease-in;
-	animation: intro 1s ease-in;
-	/*animation: intro 5s ease-in;*/
+	-webkit-animation: intro 5s ease-in;
+	-moz-animation: intro 5s ease-in;
+	-ms-animation: intro 5s ease-in;
+	-o-animation: intro 5s ease-in;
+	animation: intro 5s ease-in;
 	z-index: -1;
 	opacity: 0;
 }
 #logo_loading{
-	margin-top: calc(50% - 328px);
-	-webkit-animation: rotation 0.5s ease-in;
-	-moz-animation: rotation 0.5s ease-in;
-	-ms-animation: rotation 0.5s ease-in;
-	-o-animation: rotation 0.5s ease-in;
-	animation: rotation 0.5s ease-in;
-	/*animation: rotation 3.7s ease-in;*/
+	position: relative;
+	top: calc(50% - 125px);
+	-webkit-animation: rotation 3.7s ease-in;
+	-moz-animation: rotation 3.7s ease-in;
+	-ms-animation: rotation 3.7s ease-in;
+	-o-animation: rotation 3.7s ease-in;
+	animation: rotation 3.7s ease-in;
 }
