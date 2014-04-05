@@ -1,3 +1,116 @@
+/*Intro*/
+@-webkit-keyframes intro{
+	from{
+		z-index: 1001;
+		opacity: 1;
+	}
+	80%{
+		z-index: 1001;
+		opacity: 1;
+	}
+	to{
+		z-index: 1001;
+		opacity: 0;
+	}
+}
+@-moz-keyframes intro{
+	from{
+		z-index: 1001;
+		opacity: 1;
+	}
+	80%{
+		z-index: 1001;
+		opacity: 1;
+	}
+	to{
+		z-index: 1001;
+		opacity: 0;
+	}
+}
+@-ms-keyframes intro{
+	from{
+		z-index: 1001;
+		opacity: 1;
+	}
+	80%{
+		z-index: 1001;
+		opacity: 1;
+	}
+	to{
+		z-index: 1001;
+		opacity: 0;
+	}
+}
+@-o-keyframes intro{
+	from{
+		z-index: 1001;
+		opacity: 1;
+	}
+	80%{
+		z-index: 1001;
+		opacity: 1;
+	}
+	to{
+		z-index: 1001;
+		opacity: 0;
+	}
+}
+@keyframes intro{
+	from{
+		z-index: 1001;
+		opacity: 1;
+	}
+	80%{
+		z-index: 1001;
+		opacity: 1;
+	}
+	to{
+		z-index: 1001;
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes rotation{
+	from{
+		-webkit-transform:rotate(0deg);
+	}
+	to{
+		-webkit-transform:rotate(360deg);
+	}
+}
+@-moz-keyframes rotation{
+	from{
+		-moz-transform:rotate(0deg);
+	}
+	to{
+		-moz-transform:rotate(360deg);			
+	}
+}
+@-ms-keyframes rotation{
+	from{
+		-ms-transform:rotate(0deg);
+	}
+	to{
+		-ms-transform:rotate(360deg);	
+	}
+}
+@-o-keyframes rotation{
+	from{
+		-o-transform:rotate(0deg);
+	}
+	to{
+		-o-transform:rotate(360deg);	
+	}
+}
+@keyframes rotation{
+	from{
+		transform:rotate(0deg);
+	}
+	to{
+		transform:rotate(360deg);	
+	}
+}
+
 html, body {
 	padding:0;
 	margin:0;
@@ -16,8 +129,8 @@ header{
 	background-color: #dfdfdf;
 	position: relative;
 }
-.logo {
-	background-image: url(../timelife.png);
+#logo {
+	background-image: url(../img/timelife.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 	padding:30px; 
@@ -152,4 +265,29 @@ svg g path, #menu ul li{
 	-o-transition: all 300ms ease-in-out;
 	-ms-transition: all 300ms ease-in-out;
 	transition: all 300ms ease-in-out;
+}
+#loading{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+	text-align: center;
+	-webkit-animation: intro 5s ease-in;
+	-moz-animation: intro 5s ease-in;
+	-ms-animation: intro 5s ease-in;
+	-o-animation: intro 5s ease-in;
+	animation: intro 5s ease-in;
+	z-index: -1;
+	opacity: 0;
+}
+#logo_loading{
+	position: relative;
+	top: calc(50% - 125px);
+	-webkit-animation: rotation 3.7s ease-in;
+	-moz-animation: rotation 3.7s ease-in;
+	-ms-animation: rotation 3.7s ease-in;
+	-o-animation: rotation 3.7s ease-in;
+	animation: rotation 3.7s ease-in;
 }
