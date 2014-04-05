@@ -336,6 +336,7 @@ $.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", functio
 		data.handicap.exists = false;
 		$('#menu ul').append('<li class="handicap"><img src="Icons/handicap.png" /> <span>Handicap</span></li>');
 	});
+			
 }).done(function(){
 	function get_data(layer){
 		var element_id = 0;
