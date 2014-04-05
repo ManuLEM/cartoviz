@@ -325,7 +325,7 @@ $.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", functio
 		$.getJSON("./data/les_etablissements_hospitaliers_franciliens.geojson", function(hopital) {
 		data.hopital = hopital;
 		data.hopital.markers = [];
-		data.hopital.ages = [10, 77];
+		data.hopital.ages = [50, 77];
 		data.hopital.exists = false;
 		$('#menu ul').append('<li class="hopital"><img src="Icons/hopital.png" /> <span>Hopitaux</span></li>');
 	});
