@@ -332,7 +332,7 @@ $.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", functio
 			$.getJSON("./data/accessibilite_des_equipements_de_la_ville_de_paris.geojson", function(handicap) {
 		data.handicap = handicap;
 		data.handicap.markers = [];
-		data.handicap.ages = [18, 77];
+		data.handicap.ages = [7, 77];
 		data.handicap.exists = false;
 		$('#menu ul').append('<li class="handicap"><img src="Icons/handicap.png" /> <span>Handicap</span></li>');
 	});
