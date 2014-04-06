@@ -122,6 +122,14 @@ var layers = [];
 var agesNumber = '';
 var numbersToShow = [[7,10], [11,14], [15,17], [18,24], [25,34], [35,49], [50,64], [65,77]];
 
+var DataIcon = L.Icon.extend({
+    options: {
+    	iconAnchor:   [10, 40],
+        shadowUrl: './markers/marker-shadow.png',
+        shadowAnchor: [5, 40]
+    }
+});
+
 for (var i = 0; i < $('#numbers span').length; i++) {
 	$('#numbers span').eq(i).css({
 		left: ((($('#numbers').width() - 38) / 7) * i) - 10
@@ -270,6 +278,36 @@ function getColor(feature) {
 	}
 }
 
+function getIcon(data){
+	if ( age_user >= 7 && age_user <= 10 ){
+	    var color = 'red';
+	}
+	else if ( age_user >= 11 && age_user <= 14 ){
+	    var color = 'pink';
+	}
+	else if ( age_user >= 15 && age_user <= 17 ){
+	    var color = 'orange';
+	}
+	else if ( age_user >= 18 && age_user <= 24 ){
+	    var color = 'blue';
+	}
+	else if ( age_user >= 25 && age_user <= 34 ){
+	    var color = 'purple';
+	}
+	else if ( age_user >= 35 && age_user <= 49 ){
+	    var color = 'yellow';
+	}
+	else if ( age_user >= 50 && age_user <= 64 ){
+	    var color = 'green';
+	}
+	else if ( age_user >= 65 && age_user <= 77 ){
+	    var color = 'brown';
+	}
+
+	window[data + 'Icon'] = new DataIcon({iconUrl: './markers/marker_'+ data + '_' + color +'.png'});
+	return window[data + 'Icon'];
+}
+
 function removeMarkers(){
 	$.each(data, function( dataSet ){
 		for( var i = 0 in data[dataSet].markers){
@@ -335,7 +373,7 @@ $.when(
 			$.each(data, function( dataSet ){
 				for( var i = 0 in data[dataSet].features ){
 					if ( data[dataSet].features[i].geometry && data[dataSet].ages[0] <= age_user && data[dataSet].ages[1] >= age_user && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layer.feature.geometry.coordinates[0][0]) ){
-						data[dataSet].markers[ element_id ] = L.marker([data[dataSet].features[i].geometry.coordinates[1], data[dataSet].features[i].geometry.coordinates[0]]);
+						data[dataSet].markers[ element_id ] = L.marker([data[dataSet].features[i].geometry.coordinates[1], data[dataSet].features[i].geometry.coordinates[0]], {icon: getIcon(dataSet)});
 						map.addLayer(data[dataSet].markers[ element_id ]);
 						element_id ++;
 					};
@@ -458,6 +496,41 @@ $.when(
 		$('#menu ul li').css({
 			'background-color': getIconColor(),
 			'color': getIconColor()
+		});
+	});
+});
+
+$(document).ready(function() {
+	$.getScript('//connect.facebook.net/fr_FR/all.js', function(){
+		FB.init({
+			appId: '678345398894154',
+		});
+	}).done(function(){
+		function Login () {
+		  FB.login(function(response) {
+		      if (response.authResponse) {
+		          console.log('Welcome!  Fetching your information... ');
+		          FB.api('/me', function(response) {
+		               console.log('connected');
+		          });
+		      } else {
+		          console.log('User cancelled login or did not fully authorize.');
+		      }
+		  }, {scope: 'first_name, user_birthday'});
+		}
+		
+		FB.getLoginStatus(function(response) {
+			if (response.status === 'connected') {
+				FB.api('/me', function(response) {
+					console.log('connected');
+				});
+			}
+			else if (response.status === 'not_authorized') {
+				console.log('connected but not authorized');
+			}
+			else {
+				console.log('notconnected');
+			}
 		});
 	});
 });
