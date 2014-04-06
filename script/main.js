@@ -409,6 +409,13 @@ $.when(
 		data.marches.ages = [35, 77];
 		data.marches.exists = false;
 		$('#menu ul').append('<li class="marches"><img src="Icons/marches.png" /> <span>Marches</span></li>');
+	}),
+		$.getJSON("./data/plan_piscines_regional.geojson", function(piscine) {
+		data.piscine = piscine;
+		data.piscine.markers = [];
+		data.piscine.ages = [18, 77];
+		data.piscine.exists = false;
+		$('#menu ul').append('<li class="piscine"><img src="Icons/piscine.png" /> <span>Piscines</span></li>');
 	})
 ).done(function(){
 	function get_data(layer){
