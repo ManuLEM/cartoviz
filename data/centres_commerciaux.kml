@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0">
+<Document>
+<name>Adresses geocodees</name>
+<description>Adresses</description>
+<Placemark>
+<name>Bercy Village</name>
+<description>Une cour pavée bordée de chais de pierre blanche et de terrasses tranquilles. Une architecture où la pierre se marie à l'acier, au bois et au verre.</description>
+<Point><coordinates>2.3853960000000143,48.83322</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>Carrousel du Louvre</name>
+<description>Centre commercial qui compte 60 boutiques (Agatha, Esprit, Apple, L'Occitane, Perigot, Nature et Découverte, Fragonard, Swatch, Arteum...). Espace restaurants du monde. Accès direct au musée.</description>
+<Point><coordinates>2.33483369999999,48.86276059999999</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>Carrousel du Louvre</name>
+<description></description>
+<Point><coordinates>2.3268749999999727,48.87556499999999</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>Passage du Havre</name>
+<description>Le Passage du Havre est une galerie commerciale de 40 boutiques offrant des enseignes de mode, prêt-à-porter, chaussures, parfumerie, multimédia, bijoux, accessoires et restauration avec de grands noms de marques tels que la Fnac – Bourjois- Séphora - Fossil - Nature et découvertes - Zara - GAP - HM.</description>
+<Point><coordinates>2.3173417000000427,48.8413285</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>Boutiques du Palais des Congrès</name>
+<description>Boutiques de prêt-à-porter et équipement de la personne haut de gamme (Escada, Nodus, Tumi, Lancel, Weill, Geroges Rech, Lacoste, Gérard Darel, Sephora...).</description>
+<Point><coordinates>2.2831979999999703,48.878502</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>Italie 2</name>
+<description>Le plus grand centre commercial parisien. 130 boutiques, Carrefour Market, Printemps, Flammarion, salon de thé Chez Denise, Tigre Impérial (self-service).</description>
+<Point><coordinates>2.3562292999999954,48.8294935</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>Forum des Halles</name>
+<description>Fnac, jeunes créateurs, Habitat, Muji, Sephora, boutiques de prêt-à-porter etc... Les cinémas et les restaurants sont ouverts le dimanche.</description>
+<Point><coordinates>2.3487949999999955,48.8628182</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>Marché Saint-Germain-des-Prés</name>
+<description>Entre Saint-Sulpice et Saint-Germain-des-Prés. Les boutiques : GAP, Le Phare de la Baleine, Zara Kids, Oliver Jung, Somewhere...</description>
+<Point><coordinates>2.3358379000000014,48.8518295</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>Tour Montparnasse</name>
+<description>Boutiques de pret-à-porter, Galeries Lafayette, CA,...</description>
+<Point><coordinates>2.3218910000000506,48.842036</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>St Lazare Paris</name>
+<description>Dans la gare Saint-Lazare, St.Lazare Paris est un centre-commercial de 10 000 m² installé sur 3 niveaux. Il accueille 80 boutiques dont les enseignes Muji to Go, Starbucks, Sephora, Burger King, Hema, Yellow Korner, Petit Bateau, Esprit ou encore le restaurant Lazare du chef Eric Frechon.</description>
+<Point><coordinates>2.323836099999994,48.875764</coordinates></Point>
+</Placemark>
+<Placemark>
+<name>Beaugrenelle</name>
+<description>Situé face à la Seine, dans le quartier Beaugrenelle du XVe arrondissement, Beaugrenelle Paris est un centre commercial de 45 000m².</description>
+<Point><coordinates>2.281865899999957,48.84886729999999</coordinates></Point>
+</Placemark>
+</Document>
+</kml>
