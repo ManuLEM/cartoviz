@@ -187,7 +187,9 @@ footer{
 	height: 100%; 
 	width: 100%; 
 }
-
+#menu ul{
+	padding-left: 14px;
+}
 #menu li {
 	display: block;
 	list-style-type: none;
@@ -293,7 +295,7 @@ footer{
 	color: #349c06;
 }
 .grands_parents{
-	color: #6e6e6e;
+	color: #c26305;
 }
 
 svg g path, #menu ul li{
@@ -337,15 +339,16 @@ svg g path, #menu ul li{
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background-color: #ffffff;
+	background-color: rgba(255, 255, 255, 0.75);
 	z-index: -1;
 	opacity: 0;
 }
 #connection{
 	position: fixed;
-	top: 100px;
-	left: 100px;
+	top: calc(50% - 260px);
+	left: calc(50% - 175px);
 	width: 350px;
 	height: 520px;
-	background-color: #ffffff;
+	background-color: rgba(255, 255, 255, 0.9);
+	box-shadow: 0px 0px 10px #eeeeee;
 }

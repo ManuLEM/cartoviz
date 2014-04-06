@@ -207,7 +207,7 @@ function getIconColor() {
 	    return '#349c06';
 	}
 	else if ( age_user >= 65 && age_user <= 77 ){
-	    return '#6e6e6e';
+	    return '#c26305';
 	}
 }
 
@@ -269,12 +269,12 @@ function getColor(feature) {
 	                      						   '#d6ebcd';
 	}
 	else if ( age_user >= 65 && age_user <= 77 ){
-	    return feature.addedData.elements > 100  ? '#585858' :
-	           feature.addedData.elements > 75   ? '#6e6e6e' :
-	           feature.addedData.elements > 50   ? '#8b8b8b' :
-	           feature.addedData.elements > 30   ? '#a8a8a8' :
-	           feature.addedData.elements > 15   ? '#c5c5c5' :
-	                      						   '#e2e2e2';
+	    return feature.addedData.elements > 100  ? '#9b4f04' :
+	           feature.addedData.elements > 75   ? '#c26305' :
+	           feature.addedData.elements > 50   ? '#ce8236' :
+	           feature.addedData.elements > 30   ? '#daa169' :
+	           feature.addedData.elements > 15   ? '#e6c09b' :
+	                      						   '#f2dfcd';
 	}
 }
 
@@ -338,7 +338,7 @@ $.when(
 		data.maneges.exists = false;
 		$('#menu ul').append('<li class="maneges"><img src="Icons/manege.png" /> <span>Manège</span></li>');
 	}),
-	$.getJSON("./data/liste-des-cafes-a-un-euro.geojson", function(bars) {
+	$.getJSON("./data/festival-culture-bar-bars-2013.geojson", function(bars) {
 		data.bars = bars;
 		data.bars.markers = [];
 		data.bars.ages = [18, 35];
@@ -532,6 +532,13 @@ $(document).ready(function() {
 				console.log('notconnected');
 			}
 		});
+	});
+	$('#profile_link').on('click', function(e){
+		e.preventDefault();
+		$('#overlay').animate({
+			opacity: 1,
+			'z-index': 1002
+		}, 300);
 	});
 });
 
