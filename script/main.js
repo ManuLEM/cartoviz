@@ -365,6 +365,13 @@ $.when(
 		data.hopital.ages = [50, 77];
 		data.hopital.exists = false;
 		$('#menu ul').append('<li class="hopital"><img src="Icons/hopital.png" /> <span>Hopitaux</span></li>');
+	}),
+			$.getJSON("./data/liste_des_marches_de_quartier_a_paris.geojson", function(marches) {
+		data.marches = marches;
+		data.marches.markers = [];
+		data.marches.ages = [35, 77];
+		data.marches.exists = false;
+		$('#menu ul').append('<li class="marches"><img src="Icons/marches.png" /> <span>Marches</span></li>');
 	})
 ).done(function(){
 	function get_data(layer){
