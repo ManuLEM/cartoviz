@@ -121,7 +121,6 @@ var data = {};
 var layers = [];
 var agesNumber = '';
 var numbersToShow = [[7,10], [11,14], [15,17], [18,24], [25,34], [35,49], [50,64], [65,77]];
-var total = 0;
 
 var DataIcon = L.Icon.extend({
     options: {
@@ -280,73 +279,6 @@ function getColor(feature) {
 	}
 }
 
-function getColorByPercent(feature) {
-	if ( age_user >= 7 && age_user <= 10 ){
-	    return feature.addedData.elements > (total*0.1)  ? '#ba0e0e' :
-	           feature.addedData.elements > (total*0.08)   ? '#e91212' :
-	           feature.addedData.elements > (total*0.05)   ? '#ed4141' :
-	           feature.addedData.elements > (total*0.02)   ? '#f17070' :
-	           feature.addedData.elements > (total*0.005)   ? '#f6a0a0' :
-	                      						   '#facfcf';
-	}
-	else if ( age_user >= 11 && age_user <= 14 ){
-	    return feature.addedData.elements > (total*0.1)  ? '#aa1368' :
-	           feature.addedData.elements > (total*0.08)   ? '#d51883' :
-	           feature.addedData.elements > (total*0.05)   ? '#dd469b' :
-	           feature.addedData.elements > (total*0.02)   ? '#e574b4' :
-	           feature.addedData.elements > (total*0.005)   ? '#eea2cd' :
-	                      						   '#f6d0e6';
-	}
-	else if ( age_user >= 15 && age_user <= 17 ){
-	    return feature.addedData.elements > (total*0.1)  ? '#c6500c' :
-	           feature.addedData.elements > (total*0.08)   ? '#f8650f' :
-	           feature.addedData.elements > (total*0.05)   ? '#f9833e' :
-	           feature.addedData.elements > (total*0.02)   ? '#faa26f' :
-	           feature.addedData.elements > (total*0.005)   ? '#fcc19f' :
-	                      						   '#fde0cf';
-	}
-	else if ( age_user >= 18 && age_user <= 24 ){
-	    return feature.addedData.elements > (total*0.1)  ? '#018fa2' :
-	           feature.addedData.elements > (total*0.08)   ? '#02b3cb' :
-	           feature.addedData.elements > (total*0.05)   ? '#34c2d5' :
-	           feature.addedData.elements > (total*0.02)   ? '#67d1df' :
-	           feature.addedData.elements > (total*0.005)   ? '#99e0ea' :
-	                      						   '#cceff4';
-	}
-	else if ( age_user >= 25 && age_user <= 34 ){
-	    return feature.addedData.elements > (total*0.1)  ? '#83019d' :
-	           feature.addedData.elements > (total*0.08)   ? '#a402c5' :
-	           feature.addedData.elements > (total*0.05)   ? '#b634d0' :
-	           feature.addedData.elements > (total*0.02)   ? '#c867dc' :
-	           feature.addedData.elements > (total*0.005)   ? '#da99e7' :
-	                      						   '#ecccf3';
-	}
-	else if ( age_user >= 35 && age_user <= 49 ){
-	    return feature.addedData.elements > (total*0.1)  ? '#b17c02' :
-	           feature.addedData.elements > (total*0.08)   ? '#de9b03' :
-	           feature.addedData.elements > (total*0.05)   ? '#e4af35' :
-	           feature.addedData.elements > (total*0.02)   ? '#ebc367' :
-	           feature.addedData.elements > (total*0.005)   ? '#f1d79a' :
-	                      						   '#f8ebcc';
-	}
-	else if ( age_user >= 50 && age_user <= 64 ){
-	    return feature.addedData.elements > (total*0.1)  ? '#297c04' :
-	           feature.addedData.elements > (total*0.08)   ? '#349c06' :
-	           feature.addedData.elements > (total*0.05)   ? '#5caf37' :
-	           feature.addedData.elements > (total*0.02)   ? '#85c369' :
-	           feature.addedData.elements > (total*0.005)   ? '#add79b' :
-	                      						   '#d6ebcd';
-	}
-	else if ( age_user >= 65 && age_user <= 77 ){
-	    return feature.addedData.elements > (total*0.1)  ? '#9b4f04' :
-	           feature.addedData.elements > (total*0.08)   ? '#c26305' :
-	           feature.addedData.elements > (total*0.05)   ? '#ce8236' :
-	           feature.addedData.elements > (total*0.02)   ? '#daa169' :
-	           feature.addedData.elements > (total*0.005)   ? '#e6c09b' :
-	                      						   '#f2dfcd';
-	}
-}
-
 function getIcon(data){
 	if ( age_user >= 7 && age_user <= 10 ){
 	    var color = 'red';
@@ -476,6 +408,7 @@ $.when(
 		data.marches.markers = [];
 		data.marches.ages = [35, 77];
 		data.marches.exists = false;
+		console.log(data.marches.features);
 		$('#menu ul').append('<li class="marches"><img src="Icons/marches.png" /> <span>Marches</span></li>');
 	}),
 		$.getJSON("./data/plan_piscines_regional.geojson", function(piscine) {
@@ -552,7 +485,7 @@ $.when(
 			layers[number] = layer;
 
 			feature.addedData = parArrondissement[number];
-			total = total + parArrondissement[number].elements;
+			
 			number ++;
 			layer.setStyle({
 				fillColor: getColor(feature)
@@ -594,7 +527,7 @@ $.when(
 				collection.features[j].addedData = parArrondissement[j];
 
 				layers[j].setStyle({
-					fillColor: getColorByPercent(collection.features[j])
+					fillColor: getColor(collection.features[j])
 				});
 				$.each(data, function( dataSet ){
 					if (data[dataSet].exists) {
