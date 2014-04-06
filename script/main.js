@@ -408,10 +408,9 @@ $.when(
 		data.marches.markers = [];
 		data.marches.ages = [35, 77];
 		data.marches.exists = false;
-		console.log(data.marches.features);
 		$('#menu ul').append('<li class="marches"><img src="Icons/marches.png" /> <span>Marches</span></li>');
 	}),
-		$.getJSON("./data/plan_piscines_regional.geojson", function(piscine) {
+	$.getJSON("./data/plan_piscines_regional.geojson", function(piscine) {
 		data.piscine = piscine;
 		data.piscine.markers = [];
 		data.piscine.ages = [18, 77];
@@ -485,7 +484,7 @@ $.when(
 			layers[number] = layer;
 
 			feature.addedData = parArrondissement[number];
-			
+
 			number ++;
 			layer.setStyle({
 				fillColor: getColor(feature)
@@ -502,6 +501,13 @@ $.when(
 		});
 
 		function ageChange(){
+			prev_feature = false;
+			prev_color = false;
+			for(var z = 0 in parArrondissement){
+				parArrondissement[z].visible = false;
+			}
+			
+			removeMarkers();
 			$('#menu ul li:not(.controls)').hide();
 			$.each(data, function( dataSet ){
 				if (data[dataSet].exists) {
