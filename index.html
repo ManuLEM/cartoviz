@@ -17,14 +17,16 @@
 			<div id="logo"></div>
 			<nav id="settings">
 				<ul>
-					<li><a id="profile_link" href="profile.html"><img src="icons/user.png" alt="setting1"></a></li>
-					<li><a href="podium.html"><img src="icons/podium.png" alt="setting2"></a></li>
+					<li><a id="profile_link" href="profile.html"><img src="Icons/user.png" alt="setting1"></a></li>
+					<li><a href="podium.html"><img src="Icons/podium.png" alt="setting2"></a></li>
 				</ul>
 			</nav>
 		</header>
 		<section id="framecontentLeft">
 			<nav id="menu">
-				<ul></ul>
+				<ul>
+					<li class="controls"><img src="Icons/tout.png"></li>
+				</ul>
 			</nav>
 		</section>
 		<section id="framecontentRight">
@@ -47,7 +49,18 @@
 		</section>
 		<div id="overlay">
 			<div id="connection">
-				Hi there
+				<img class="close" src="img/close.png">
+				<img class="logo" src="img/timelife_big.png">
+				<h2>Inscrivez-vous</h2>
+				<p id="facebook">
+					Se connecter avec facebook
+				</p>
+				<em>ou</em>
+				<form id="regular_co" action="">
+					<input type="text" placeholder="Prénom"><br>
+					<input type="text" placeholder="Age"><br>
+					<input type="submit" value="Valider">
+				</form>
 			</div>
 		</div>
 		<script src="script/main.js"></script>
