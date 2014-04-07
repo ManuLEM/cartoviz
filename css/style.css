@@ -396,3 +396,6 @@ svg g path, #menu ul li{
 	line-height: 40px;
 	border-radius: 10px;
 }
+.unused{
+	opacity: 0.5;
+}
