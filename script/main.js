@@ -121,6 +121,7 @@ var data = {};
 var layers = [];
 var agesNumber = '';
 var numbersToShow = [[7,10], [11,14], [15,17], [18,24], [25,34], [35,49], [50,64], [65,77]];
+var total = 0;
 
 var DataIcon = L.Icon.extend({
     options: {
@@ -156,7 +157,7 @@ map.on('zoomend', function(){
 	};
 });
 
-var age_user = (numbersToShow[$('#timeline').val()-1][0] + numbersToShow[$('#timeline').val()-1][1]) /2;
+var age_user = (numbersToShow[Math.round($('#timeline').val())-1][0] + numbersToShow[Math.round($('#timeline').val())-1][1]) /2;
 
 $.when(
 	$.getJSON("./data/recensement_des_equipements_sportifs_a_paris.geojson", function(multi_sport) {
@@ -228,9 +229,10 @@ $.when(
 		data.hopital.markers = [];
 		data.hopital.ages = [50, 77];
 		data.hopital.exists = false;
+		console.log(hopital);
 		for(var i = 0 in data.hopital.features){
-			data.hopital.features[i].properties.titre = data.hopital.features[i].properties.title;
-			data.hopital.features[i].properties.adresse = data.hopital.features[i].properties.address || '';
+			data.hopital.features[i].properties.titre = data.hopital.features[i].properties.categorie_de_l_etablissement;
+			data.hopital.features[i].properties.adresse = data.hopital.features[i].properties.adresse_complete || '';
 		}
 		$('#menu ul').append('<li class="hopital"><img src="Icons/hopital.png" /> <span>Hopitaux</span></li>');
 	}),
@@ -264,6 +266,10 @@ $.when(
 	})
 ).done(function(){
 
+	$.each(data, function( dataSet ){
+		total =+ data[dataSet].features.length;
+	});
+
 	$.getJSON("./data/arrondissements.geojson", function(collection) {
 		$('#menu ul li:not(.controls)').hide();
 		window.collection = collection;
@@ -271,8 +277,7 @@ $.when(
 			onEachFeature: onEachFeature,
 			style: {
 		        color: 'white',
-		        dashArray: '7',
-			    weight: 2,
+			    weight: 1,
 			    opacity: 1,
 			    fillOpacity: 0.9
 		    }
@@ -293,10 +298,6 @@ $.when(
 				$('#menu ul li.'+dataSet).show();
 			};
 		});
-
-		function ageChange(){
-			onAgeChange();
-		}
 
 		$('#timeline').on('change', function(){
 			ageChange();

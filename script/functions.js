@@ -54,67 +54,67 @@ function getIconColor() {
 
 function getColor(feature) {
 	if ( age_user >= 7 && age_user <= 10 ){
-	    return feature.addedData.elements > 100  ? '#ba0e0e' :
-	           feature.addedData.elements > 75   ? '#e91212' :
-	           feature.addedData.elements > 50   ? '#ed4141' :
-	           feature.addedData.elements > 30   ? '#f17070' :
-	           feature.addedData.elements > 15   ? '#f6a0a0' :
+	    return feature.addedData.elements > (total*0.5)  ? '#ba0e0e' :
+	           feature.addedData.elements > (total*0.4)   ? '#e91212' :
+	           feature.addedData.elements > (total*0.3)   ? '#ed4141' :
+	           feature.addedData.elements > (total*0.2)   ? '#f17070' :
+	           feature.addedData.elements > (total*0.1)   ? '#f6a0a0' :
 	                      						   '#facfcf';
 	}
 	else if ( age_user >= 11 && age_user <= 14 ){
-	    return feature.addedData.elements > 100  ? '#aa1368' :
-	           feature.addedData.elements > 75   ? '#d51883' :
-	           feature.addedData.elements > 50   ? '#dd469b' :
-	           feature.addedData.elements > 30   ? '#e574b4' :
-	           feature.addedData.elements > 15   ? '#eea2cd' :
+	    return feature.addedData.elements > (total*0.5)  ? '#aa1368' :
+	           feature.addedData.elements > (total*0.4)   ? '#d51883' :
+	           feature.addedData.elements > (total*0.3)   ? '#dd469b' :
+	           feature.addedData.elements > (total*0.2)   ? '#e574b4' :
+	           feature.addedData.elements > (total*0.1)   ? '#eea2cd' :
 	                      						   '#f6d0e6';
 	}
 	else if ( age_user >= 15 && age_user <= 17 ){
-	    return feature.addedData.elements > 100  ? '#c6500c' :
-	           feature.addedData.elements > 75   ? '#f8650f' :
-	           feature.addedData.elements > 50   ? '#f9833e' :
-	           feature.addedData.elements > 30   ? '#faa26f' :
-	           feature.addedData.elements > 15   ? '#fcc19f' :
+	    return feature.addedData.elements > (total*0.5)  ? '#c6500c' :
+	           feature.addedData.elements > (total*0.4)   ? '#f8650f' :
+	           feature.addedData.elements > (total*0.3)   ? '#f9833e' :
+	           feature.addedData.elements > (total*0.2)   ? '#faa26f' :
+	           feature.addedData.elements > (total*0.1)   ? '#fcc19f' :
 	                      						   '#fde0cf';
 	}
 	else if ( age_user >= 18 && age_user <= 24 ){
-	    return feature.addedData.elements > 100  ? '#018fa2' :
-	           feature.addedData.elements > 75   ? '#02b3cb' :
-	           feature.addedData.elements > 50   ? '#34c2d5' :
-	           feature.addedData.elements > 30   ? '#67d1df' :
-	           feature.addedData.elements > 15   ? '#99e0ea' :
+	    return feature.addedData.elements > (total*0.5)  ? '#018fa2' :
+	           feature.addedData.elements > (total*0.4)   ? '#02b3cb' :
+	           feature.addedData.elements > (total*0.3)   ? '#34c2d5' :
+	           feature.addedData.elements > (total*0.2)   ? '#67d1df' :
+	           feature.addedData.elements > (total*0.1)   ? '#99e0ea' :
 	                      						   '#cceff4';
 	}
 	else if ( age_user >= 25 && age_user <= 34 ){
-	    return feature.addedData.elements > 100  ? '#83019d' :
-	           feature.addedData.elements > 75   ? '#a402c5' :
-	           feature.addedData.elements > 50   ? '#b634d0' :
-	           feature.addedData.elements > 30   ? '#c867dc' :
-	           feature.addedData.elements > 15   ? '#da99e7' :
+	    return feature.addedData.elements > (total*0.5)  ? '#83019d' :
+	           feature.addedData.elements > (total*0.4)   ? '#a402c5' :
+	           feature.addedData.elements > (total*0.3)   ? '#b634d0' :
+	           feature.addedData.elements > (total*0.2)   ? '#c867dc' :
+	           feature.addedData.elements > (total*0.1)   ? '#da99e7' :
 	                      						   '#ecccf3';
 	}
 	else if ( age_user >= 35 && age_user <= 49 ){
-	    return feature.addedData.elements > 100  ? '#b17c02' :
-	           feature.addedData.elements > 75   ? '#de9b03' :
-	           feature.addedData.elements > 50   ? '#e4af35' :
-	           feature.addedData.elements > 30   ? '#ebc367' :
-	           feature.addedData.elements > 15   ? '#f1d79a' :
+	    return feature.addedData.elements > (total*0.5)  ? '#b17c02' :
+	           feature.addedData.elements > (total*0.4)   ? '#de9b03' :
+	           feature.addedData.elements > (total*0.3)   ? '#e4af35' :
+	           feature.addedData.elements > (total*0.2)   ? '#ebc367' :
+	           feature.addedData.elements > (total*0.1)   ? '#f1d79a' :
 	                      						   '#f8ebcc';
 	}
 	else if ( age_user >= 50 && age_user <= 64 ){
-	    return feature.addedData.elements > 100  ? '#297c04' :
-	           feature.addedData.elements > 75   ? '#349c06' :
-	           feature.addedData.elements > 50   ? '#5caf37' :
-	           feature.addedData.elements > 30   ? '#85c369' :
-	           feature.addedData.elements > 15   ? '#add79b' :
+	    return feature.addedData.elements > (total*0.5)  ? '#297c04' :
+	           feature.addedData.elements > (total*0.4)   ? '#349c06' :
+	           feature.addedData.elements > (total*0.3)   ? '#5caf37' :
+	           feature.addedData.elements > (total*0.2)   ? '#85c369' :
+	           feature.addedData.elements > (total*0.1)   ? '#add79b' :
 	                      						   '#d6ebcd';
 	}
 	else if ( age_user >= 65 && age_user <= 77 ){
-	    return feature.addedData.elements > 100  ? '#9b4f04' :
-	           feature.addedData.elements > 75   ? '#c26305' :
-	           feature.addedData.elements > 50   ? '#ce8236' :
-	           feature.addedData.elements > 30   ? '#daa169' :
-	           feature.addedData.elements > 15   ? '#e6c09b' :
+	    return feature.addedData.elements > (total*0.5)  ? '#9b4f04' :
+	           feature.addedData.elements > (total*0.4)   ? '#c26305' :
+	           feature.addedData.elements > (total*0.3)   ? '#ce8236' :
+	           feature.addedData.elements > (total*0.2)   ? '#daa169' :
+	           feature.addedData.elements > (total*0.1)   ? '#e6c09b' :
 	                      						   '#f2dfcd';
 	}
 }
@@ -161,13 +161,15 @@ function get_data(layer){
 	var element_id = 0;
 	setTimeout(function(){
 		$.each(data, function( dataSet ){
-			for( var i = 0 in data[dataSet].features ){
-				if ( data[dataSet].features[i].geometry && data[dataSet].ages[0] <= age_user && data[dataSet].ages[1] >= age_user && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layer.feature.geometry.coordinates[0][0]) ){
-					data[dataSet].markers[ element_id ] = L.marker([data[dataSet].features[i].geometry.coordinates[1], data[dataSet].features[i].geometry.coordinates[0]], {icon: getIcon(dataSet)}).bindPopup(data[dataSet].features[i].properties.titre+'<br>'+data[dataSet].features[i].properties.adresse+'<br><button class="event">Créer un évènement facebook</button>');
-					map.addLayer(data[dataSet].markers[ element_id ]);
-					element_id ++;
+			if (data[dataSet].ages[0] <= age_user && data[dataSet].ages[1] >= age_user) {
+				for( var i = 0 in data[dataSet].features ){
+					if ( data[dataSet].features[i].geometry && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layer.feature.geometry.coordinates[0][0]) ){
+						data[dataSet].markers[ element_id ] = L.marker([data[dataSet].features[i].geometry.coordinates[1], data[dataSet].features[i].geometry.coordinates[0]], {icon: getIcon(dataSet)}).bindPopup(data[dataSet].features[i].properties.titre+'<br>'+data[dataSet].features[i].properties.adresse+'<br><button class="event">Créer un évènement facebook</button>');
+						map.addLayer(data[dataSet].markers[ element_id ]);
+						element_id ++;
+					};
 				};
-			};
+			}
 		});
 
 	}, 300);
@@ -217,7 +219,8 @@ function onEachFeatureCustom(feature, layer){
 	});
 }
 
-function onAgeChange () {
+function ageChange () {
+	
 	prev_feature = false;
 	prev_color = false;
 	for(var z = 0 in parArrondissement){
@@ -231,7 +234,7 @@ function onAgeChange () {
 			data[dataSet].exists = false;
 		};
 	});
-	age_user = (numbersToShow[$('#timeline').val()-1][0] + numbersToShow[$('#timeline').val()-1][1]) /2;
+	age_user = (numbersToShow[Math.round($('#timeline').val())-1][0] + numbersToShow[(Math.round($('#timeline').val())-1][1]) /2;
 	$('#menu ul li').css({
 		'background-color': getIconColor(),
 		'color': getIconColor()

@@ -126,7 +126,7 @@ html, body {
 header{
 	height: 64px;
 	margin-bottom: 12px;
-	background-color: #dfdfdf;
+	background-color: #000000;
 	position: relative;
 }
 #logo {
@@ -299,11 +299,11 @@ footer{
 }
 
 svg g path, #menu ul li{
-	-webkit-transition: all 300ms ease-in-out;
-	-moz-transition: all 300ms ease-in-out;
-	-o-transition: all 300ms ease-in-out;
-	-ms-transition: all 300ms ease-in-out;
-	transition: all 300ms ease-in-out;
+	-webkit-transition: all 800ms ease-out;
+	-moz-transition: all 800ms ease-out;
+	-o-transition: all 800ms ease-out;
+	-ms-transition: all 800ms ease-out;
+	transition: all 800ms ease-out;
 }
 #loading{
 	position: fixed;

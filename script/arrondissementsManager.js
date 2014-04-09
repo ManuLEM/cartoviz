@@ -26,69 +26,88 @@ function getIconColor() {
 }
 
 function getColor(feature) {
+	var percents = {};
+	var finalPercent = 0;
+	var count = 0;
+	$.each(feature.addedData, function (dataSet){
+		if (dataSet != 'arrondissement' && dataSet != 'elements' && dataSet != 'visible') {
+			if ( data[dataSet].features.length < 10 && feature.addedData[dataSet] != 0 ) {
+				percents[dataSet] = ((feature.addedData[dataSet] / data[dataSet].features.length)*100)-15;
+			}
+			else{
+				percents[dataSet] = (feature.addedData[dataSet] / data[dataSet].features.length)*100;
+			}
+		};
+	});
+	$.each(percents, function (type){
+		finalPercent += percents[type];
+		count ++;
+	});
+	finalPercent = finalPercent / count;
+
 	if ( age_user >= 7 && age_user <= 10 ){
-	    return feature.addedData.elements > 100  ? '#ba0e0e' :
-	           feature.addedData.elements > 75   ? '#e91212' :
-	           feature.addedData.elements > 50   ? '#ed4141' :
-	           feature.addedData.elements > 30   ? '#f17070' :
-	           feature.addedData.elements > 15   ? '#f6a0a0' :
-	                      						   '#facfcf';
+	    return finalPercent > 3.75  ? '#ba0e0e' :
+	           finalPercent > 3     ? '#e91212' :
+	           finalPercent > 2.25  ? '#ed4141' :
+	           finalPercent > 1.5   ? '#f17070' :
+	           finalPercent > 0.75  ? '#f6a0a0' :
+	                      			  '#facfcf';
 	}
 	else if ( age_user >= 11 && age_user <= 14 ){
-	    return feature.addedData.elements > 100  ? '#aa1368' :
-	           feature.addedData.elements > 75   ? '#d51883' :
-	           feature.addedData.elements > 50   ? '#dd469b' :
-	           feature.addedData.elements > 30   ? '#e574b4' :
-	           feature.addedData.elements > 15   ? '#eea2cd' :
-	                      						   '#f6d0e6';
+	    return finalPercent > 3.75  ? '#aa1368' :
+	           finalPercent > 3     ? '#d51883' :
+	           finalPercent > 2.25  ? '#dd469b' :
+	           finalPercent > 1.5   ? '#e574b4' :
+	           finalPercent > 0.75  ? '#eea2cd' :
+	                      			  '#f6d0e6';
 	}
 	else if ( age_user >= 15 && age_user <= 17 ){
-	    return feature.addedData.elements > 100  ? '#c6500c' :
-	           feature.addedData.elements > 75   ? '#f8650f' :
-	           feature.addedData.elements > 50   ? '#f9833e' :
-	           feature.addedData.elements > 30   ? '#faa26f' :
-	           feature.addedData.elements > 15   ? '#fcc19f' :
-	                      						   '#fde0cf';
+	    return finalPercent > 3.75  ? '#c6500c' :
+	           finalPercent > 3     ? '#f8650f' :
+	           finalPercent > 2.25  ? '#f9833e' :
+	           finalPercent > 1.5   ? '#faa26f' :
+	           finalPercent > 0.75  ? '#fcc19f' :
+	                      			  '#fde0cf';
 	}
 	else if ( age_user >= 18 && age_user <= 24 ){
-	    return feature.addedData.elements > 100  ? '#018fa2' :
-	           feature.addedData.elements > 75   ? '#02b3cb' :
-	           feature.addedData.elements > 50   ? '#34c2d5' :
-	           feature.addedData.elements > 30   ? '#67d1df' :
-	           feature.addedData.elements > 15   ? '#99e0ea' :
-	                      						   '#cceff4';
+	    return finalPercent > 3.75  ? '#018fa2' :
+	           finalPercent > 3     ? '#02b3cb' :
+	           finalPercent > 2.25  ? '#34c2d5' :
+	           finalPercent > 1.5   ? '#67d1df' :
+	           finalPercent > 0.75  ? '#99e0ea' :
+	                      			  '#cceff4';
 	}
 	else if ( age_user >= 25 && age_user <= 34 ){
-	    return feature.addedData.elements > 100  ? '#83019d' :
-	           feature.addedData.elements > 75   ? '#a402c5' :
-	           feature.addedData.elements > 50   ? '#b634d0' :
-	           feature.addedData.elements > 30   ? '#c867dc' :
-	           feature.addedData.elements > 15   ? '#da99e7' :
-	                      						   '#ecccf3';
+	    return finalPercent > 3.75  ? '#83019d' :
+	           finalPercent > 3     ? '#a402c5' :
+	           finalPercent > 2.25  ? '#b634d0' :
+	           finalPercent > 1.5   ? '#c867dc' :
+	           finalPercent > 0.75  ? '#da99e7' :
+	                      			  '#ecccf3';
 	}
 	else if ( age_user >= 35 && age_user <= 49 ){
-	    return feature.addedData.elements > 100  ? '#b17c02' :
-	           feature.addedData.elements > 75   ? '#de9b03' :
-	           feature.addedData.elements > 50   ? '#e4af35' :
-	           feature.addedData.elements > 30   ? '#ebc367' :
-	           feature.addedData.elements > 15   ? '#f1d79a' :
-	                      						   '#f8ebcc';
+	    return finalPercent > 3.75  ? '#b17c02' :
+	           finalPercent > 3     ? '#de9b03' :
+	           finalPercent > 2.25  ? '#e4af35' :
+	           finalPercent > 1.5   ? '#ebc367' :
+	           finalPercent > 0.75  ? '#f1d79a' :
+	                      			  '#f8ebcc';
 	}
 	else if ( age_user >= 50 && age_user <= 64 ){
-	    return feature.addedData.elements > 100  ? '#297c04' :
-	           feature.addedData.elements > 75   ? '#349c06' :
-	           feature.addedData.elements > 50   ? '#5caf37' :
-	           feature.addedData.elements > 30   ? '#85c369' :
-	           feature.addedData.elements > 15   ? '#add79b' :
-	                      						   '#d6ebcd';
+	    return finalPercent > 3.75  ? '#297c04' :
+	           finalPercent > 3     ? '#349c06' :
+	           finalPercent > 2.25  ? '#5caf37' :
+	           finalPercent > 1.5   ? '#85c369' :
+	           finalPercent > 0.75  ? '#add79b' :
+	                      			  '#d6ebcd';
 	}
 	else if ( age_user >= 65 && age_user <= 77 ){
-	    return feature.addedData.elements > 100  ? '#9b4f04' :
-	           feature.addedData.elements > 75   ? '#c26305' :
-	           feature.addedData.elements > 50   ? '#ce8236' :
-	           feature.addedData.elements > 30   ? '#daa169' :
-	           feature.addedData.elements > 15   ? '#e6c09b' :
-	                      						   '#f2dfcd';
+	    return finalPercent > 3.75  ? '#9b4f04' :
+	           finalPercent > 3     ? '#c26305' :
+	           finalPercent > 2.25  ? '#ce8236' :
+	           finalPercent > 1.5   ? '#daa169' :
+	           finalPercent > 0.75  ? '#e6c09b' :
+	                      			  '#f2dfcd';
 	}
 }
 
@@ -148,10 +167,14 @@ function onClickFeature(e){
 
 function onEachFeatureCustom(feature, layer){
 	$.each(data, function( dataSet ){
-		for( var i = 0 in data[dataSet].features){
-			if ( data[dataSet].features[i].geometry && data[dataSet].ages[0] <= age_user && data[dataSet].ages[1] >= age_user && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layer.feature.geometry.coordinates[0][0]) ){	
-				parArrondissement[number].elements ++;
-				data[dataSet].exists = true;
+		if (data[dataSet].ages[0] <= age_user && data[dataSet].ages[1] >= age_user) {
+			parArrondissement[number][dataSet] = 0;
+			for( var i = 0 in data[dataSet].features){
+				if ( data[dataSet].features[i].geometry && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layer.feature.geometry.coordinates[0][0]) ){	
+					parArrondissement[number].elements ++;
+					data[dataSet].exists = true;
+					parArrondissement[number][dataSet] ++;
+				}
 			}
 		}
 	});
