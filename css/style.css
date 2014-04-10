@@ -399,3 +399,6 @@ svg g path, #menu ul li{
 .unused{
 	opacity: 0.5;
 }
+.filtered{
+	opacity: 0.4 !important;
+}

@@ -54,10 +54,10 @@ $(document).ready(function() {
 						}
 					}
 				});
-				window.collection.features[j].addedData = parArrondissement[j];
+				features[j].addedData = parArrondissement[j];
 
 				layers[j].setStyle({
-					fillColor: getColor(window.collection.features[j])
+					fillColor: getColor(features[j])
 				});
 				$.each(data, function( dataSet ){
 					if (data[dataSet].exists) {

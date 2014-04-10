@@ -38,7 +38,7 @@ function get_data(layer){
     setTimeout(function(){
         $.each(data, function( dataSet ){
             for( var i = 0 in data[dataSet].features ){
-                if ( data[dataSet].features[i].geometry && data[dataSet].ages[0] <= age_user && data[dataSet].ages[1] >= age_user && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layer.feature.geometry.coordinates[0][0]) ){
+                if ( data[dataSet].features[i].geometry && data[dataSet].ages[0] <= age_user && data[dataSet].ages[1] >= age_user && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layer.feature.geometry.coordinates[0][0]) && data[dataSet].filtered == false ){
                     data[dataSet].markers[ element_id ] = L.marker([data[dataSet].features[i].geometry.coordinates[1], data[dataSet].features[i].geometry.coordinates[0]], {icon: getIcon(dataSet)}).bindPopup(data[dataSet].features[i].properties.titre+'<br>'+data[dataSet].features[i].properties.adresse+'<br><button class="event">Créer un évènement facebook</button>');
                     map.addLayer(data[dataSet].markers[ element_id ]);
                     element_id ++;

@@ -149,6 +149,7 @@ function onClickFeature(e){
 		if(prev_feature && prev_color){
 			prev_feature.setStyle({ fillColor: prev_color });
 		}
+		prev_layer = layer;
 		prev_feature = e.layer;
 		prev_color = e.layer.options.fillColor;
 		for(var z = 0 in parArrondissement){
@@ -166,24 +167,24 @@ function onClickFeature(e){
 }
 
 function onEachFeatureCustom(feature, layer){
+	featureNumber = parseInt(feature.properties.Name) - 1;
 	$.each(data, function( dataSet ){
+		parArrondissement[featureNumber][dataSet] = 0;
 		if (data[dataSet].ages[0] <= age_user && data[dataSet].ages[1] >= age_user) {
-			parArrondissement[number][dataSet] = 0;
 			for( var i = 0 in data[dataSet].features){
 				if ( data[dataSet].features[i].geometry && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layer.feature.geometry.coordinates[0][0]) ){	
-					parArrondissement[number].elements ++;
+					parArrondissement[featureNumber].elements ++;
 					data[dataSet].exists = true;
-					parArrondissement[number][dataSet] ++;
+					parArrondissement[featureNumber][dataSet] ++;
 				}
 			}
 		}
 	});
 
-	layers[number] = layer;
+	layers[featureNumber] = layer;
 
-	feature.addedData = parArrondissement[number];
+	feature.addedData = parArrondissement[featureNumber];
 
-	number ++;
 	layer.setStyle({
 		fillColor: getColor(feature)
 	});
