@@ -30,14 +30,16 @@ function getColor(feature) {
 	var finalPercent = 0;
 	var count = 0;
 	$.each(feature.addedData, function (dataSet){
-		if (dataSet != 'arrondissement' && dataSet != 'elements' && dataSet != 'visible') {
-			if ( data[dataSet].features.length < 10 && feature.addedData[dataSet] != 0 ) {
-				percents[dataSet] = ((feature.addedData[dataSet] / data[dataSet].features.length)*100)-15;
-			}
-			else{
-				percents[dataSet] = (feature.addedData[dataSet] / data[dataSet].features.length)*100;
-			}
-		};
+		if(data[dataSet] && data[dataSet].filtered == false){
+			if (dataSet != 'arrondissement' && dataSet != 'elements' && dataSet != 'visible') {
+				if ( data[dataSet].features.length < 10 && feature.addedData[dataSet] != 0 ) {
+					percents[dataSet] = ((feature.addedData[dataSet] / data[dataSet].features.length)*100)-15;
+				}
+				else{
+					percents[dataSet] = (feature.addedData[dataSet] / data[dataSet].features.length)*100;
+				}
+			};
+		}
 	});
 	$.each(percents, function (type){
 		finalPercent += percents[type];

@@ -60,7 +60,7 @@ function filterHide (type){
 
 	for( var j = 0 in layers){
 		if (!parArrondissement[j].visible) {
-			parArrondissement[j].elements =- parArrondissement[j][type];
+			parArrondissement[j].elements -= parArrondissement[j][type];
 			parArrondissement[j][type] = 0;
 			
 			features[j].addedData = parArrondissement[j];
