@@ -51,6 +51,16 @@ function ageChange () {
 			};
 		});
 	}
+	if ( $('#menu ul li.filtered:visible').length === ($('#menu ul li:visible').length - 1)) {
+		$('#menu ul li.controls').find('img').attr('src', 'Icons/pastout.png');
+		$('#menu ul li.controls').addClass('clicked');
+	}
+	else {
+		if($('#menu ul li.controls').hasClass('clicked')){
+			$('#menu ul li.controls').find('img').attr('src', 'Icons/tout.png');
+			$('#menu ul li.controls').removeClass('clicked');
+		}
+	};
 }
 
 function filterHide (type){

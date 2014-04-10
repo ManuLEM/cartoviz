@@ -370,7 +370,7 @@ $.when(
 					filterHide(type);
 				}
 
-				if ( $('#menu ul li.filtered').length === ($('#menu ul li:visible').length - 1)) {
+				if ( $('#menu ul li.filtered:visible').length === ($('#menu ul li:visible').length - 1)) {
 					$('#menu ul li.controls').find('img').attr('src', 'Icons/pastout.png');
 					$('#menu ul li.controls').addClass('clicked');
 				}
