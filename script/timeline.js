@@ -8,6 +8,7 @@ function ageChange () {
 	}
 	
 	removeMarkers();
+
 	$('#menu ul li:not(.controls)').hide();
 	$.each(data, function( dataSet ){
 		if (data[dataSet].exists) {
@@ -33,6 +34,9 @@ function ageChange () {
 							parArrondissement[j][dataSet] ++;
 						}
 					}
+				}
+				else{
+					data[dataSet].exists = true;
 				}
 			}
 		});
