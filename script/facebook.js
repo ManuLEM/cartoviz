@@ -33,6 +33,8 @@ $(document).ready(function() {
 				$('#timeline').val(8);
 			}
 
+			$('.close').click();
+
 			ageChange();
 		});
 	}
@@ -55,13 +57,16 @@ $(document).ready(function() {
 		});
 	});
 	$('#profile_link').on('click', function(e){
+		e.preventDefault();
 		if (!connected && !localStorage.age) {
-			e.preventDefault();
 			$('#overlay').animate({
 				opacity: 1,
 				'z-index': 1002
 			}, 300);
 		}
+	});
+	$('#podium_link').on('click', function(e){
+		e.preventDefault();
 	});
 	$('#facebook').on('click', function() {
 		FB.login(function(response) {
@@ -81,6 +86,13 @@ $(document).ready(function() {
 	});
 	if (!connected) {
 		if (localStorage.name && localStorage.age) {
+			$('#menu li.controls').ready(function(){
+				if ($('#menu li.controls').hasClass('clicked')) {
+					$('#menu ul li.controls').find('img').attr('src', 'Icons/tout.png');
+					$('#menu ul li.controls').removeClass('clicked');
+				};
+			});
+			
 			age_user = localStorage.age;
 			if (age_user >= 7 && age_user <= 10) {
 				$('#timeline').val(1);

@@ -1,7 +1,7 @@
 var map = L.map('map').setView([48.8567, 2.3508], 12);
 
-var southWest = new L.latLng([48.81, 2.17], map.getMaxZoom());
-var northEast = new L.latLng([48.91, 2.45], map.getMaxZoom());
+var southWest = new L.latLng([48.80, 2.17], map.getMaxZoom());
+var northEast = new L.latLng([48.90, 2.45], map.getMaxZoom());
 map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
 
 L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
@@ -216,6 +216,7 @@ $.when(
 		data.poker.filtered = false;
 		for(var i = 0 in data.poker.features){
 			data.poker.features[i].properties.titre = data.poker.features[i].properties.Name;
+			data.poker.features[i].properties.adresse = data.poker.features[i].properties.Adresse;
 		}
 		$('#menu ul').append('<li class="poker" data-type="poker" ><img src="Icons/poker.png" /> <span>Poker</span></li>');
 	}),
@@ -252,6 +253,7 @@ $.when(
 		data.centres_commerciaux.filtered = false;
 		for(var i = 0 in data.centres_commerciaux.features){
 			data.centres_commerciaux.features[i].properties.titre = data.centres_commerciaux.features[i].properties.Name;
+			data.centres_commerciaux.features[i].properties.adresse = '';
 		}
 		$('#menu ul').append('<li class="centres_commerciaux" data-type="centres_commerciaux" ><img src="Icons/shopping.png" /> <span>Centres Commerciaux</span></li>');
 	}),
@@ -267,12 +269,16 @@ $.when(
 		}
 		$('#menu ul').append('<li class="marches" data-type="marches" ><img src="Icons/marches.png" /> <span>Marchés</span></li>');
 	}),
-	$.getJSON("./data/plan_piscines_regional.geojson", function(piscine) {
+	$.getJSON("./data/paris_-_liste_des_equipements_de_proximite_ecoles_piscines_jardins.geojson", function(piscine) {
 		data.piscine = piscine;
 		data.piscine.markers = [];
 		data.piscine.ages = [18, 77];
 		data.piscine.exists = false;
 		data.piscine.filtered = false;
+		for(var i = 0 in data.piscine.features){
+			data.piscine.features[i].properties.titre = data.piscine.features[i].properties.designation_longue;
+			data.piscine.features[i].properties.adresse = data.piscine.features[i].properties.ap_num + ' ' + data.piscine.features[i].properties.ap_voie + ' ' + data.piscine.features[i].properties.ap_cp || '';
+		}
 		$('#menu ul').append('<li class="piscine" data-type="piscine" ><img src="Icons/piscine.png" /> <span>Piscines</span></li>');
 	})
 ).done(function(){
@@ -389,9 +395,6 @@ $.when(
 			$('.close').click();
 
 			if (age_user >= 7 && age_user <= 10) {
-				$('#timeline').val(1);
-			}
-			else if (age_user >= 7 && age_user <= 10) {
 				$('#timeline').val(1);
 			}
 			else if (age_user >= 11 && age_user <= 14) {
