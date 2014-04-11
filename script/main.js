@@ -275,11 +275,25 @@ $.when(
 		data.piscine.ages = [18, 77];
 		data.piscine.exists = false;
 		data.piscine.filtered = false;
+		
 		for(var i = 0 in data.piscine.features){
 			data.piscine.features[i].properties.titre = data.piscine.features[i].properties.designation_longue;
 			data.piscine.features[i].properties.adresse = data.piscine.features[i].properties.ap_num + ' ' + data.piscine.features[i].properties.ap_voie + ' ' + data.piscine.features[i].properties.ap_cp || '';
 		}
 		$('#menu ul').append('<li class="piscine" data-type="piscine" ><img src="Icons/piscine.png" /> <span>Piscines</span></li>');
+	}),
+	$.getJSON("./data/liste_des_etablissements_publics_culture.geojson", function(culture) {
+		data.culture = culture;
+		data.culture.markers = [];
+		data.culture.ages = [15, 77];
+		data.culture.exists = false;
+		data.culture.filtered = false;
+		console.log(culture);
+		for(var i = 0 in data.culture.features){
+		data.culture.features[i].properties.titre = data.culture.features[i].properties.structure;
+		data.culture.features[i].properties.adresse = '';
+		}
+		$('#menu ul').append('<li class="culture" data-type="culture" ><img src="Icons/culture.png" /> <span>Cultures</span></li>');
 	})
 ).done(function(){
 
