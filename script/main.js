@@ -265,7 +265,7 @@ $.when(
 			data.marches.features[i].properties.titre = data.marches.features[i].properties.marche;
 			data.marches.features[i].properties.adresse = data.marches.features[i].properties.localisation || '';
 		}
-		$('#menu ul').append('<li class="marches" data-type="marches" ><img src="Icons/marches.png" /> <span>Marches</span></li>');
+		$('#menu ul').append('<li class="marches" data-type="marches" ><img src="Icons/marches.png" /> <span>Marchés</span></li>');
 	}),
 	$.getJSON("./data/plan_piscines_regional.geojson", function(piscine) {
 		data.piscine = piscine;
@@ -379,6 +379,44 @@ $.when(
 					$('#menu ul li.controls').removeClass('clicked');
 				};
 			}
+		});
+		$('#regular_co').on('submit', function(e){
+			e.preventDefault();
+			localStorage.setItem('name', $('#regular_co_name').val());
+			localStorage.setItem('age', $('#regular_co_age').val());
+			age_user = $('#regular_co_age').val();
+
+			$('.close').click();
+
+			if (age_user >= 7 && age_user <= 10) {
+				$('#timeline').val(1);
+			}
+			else if (age_user >= 7 && age_user <= 10) {
+				$('#timeline').val(1);
+			}
+			else if (age_user >= 11 && age_user <= 14) {
+				$('#timeline').val(2);
+			}
+			else if (age_user >= 15 && age_user <= 17) {
+				$('#timeline').val(3);
+			}
+			else if (age_user >= 18 && age_user <= 24) {
+				$('#timeline').val(4);
+			}
+			else if (age_user >= 25 && age_user <= 34) {
+				$('#timeline').val(5);
+			}
+			else if (age_user >= 35 && age_user <= 49) {
+				$('#timeline').val(6);
+			}
+			else if (age_user >= 50 && age_user <= 64) {
+				$('#timeline').val(7);
+			}
+			else if (age_user >= 65 && age_user <= 77) {
+				$('#timeline').val(8);
+			}
+
+			ageChange();
 		});
 	});
 });

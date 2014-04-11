@@ -33,38 +33,7 @@ $(document).ready(function() {
 				$('#timeline').val(8);
 			}
 
-			$('#menu ul li:not(.controls)').hide();
-			$.each(data, function( dataSet ){
-				if (data[dataSet].exists) {
-					data[dataSet].exists = false;
-				};
-			});
-			$('#menu ul li').css({
-				'background-color': getIconColor(),
-				'color': getIconColor()
-			});
-
-			for( var j = 0 in parArrondissement){
-				parArrondissement[j].elements = 0;
-				$.each(data, function( dataSet ){
-					for( var i = 0 in data[dataSet].features){
-						if ( data[dataSet].features[i].geometry && data[dataSet].ages[0] <= age_user && data[dataSet].ages[1] >= age_user && pointIsInPoly( data[dataSet].features[i].geometry.coordinates, layers[j].feature.geometry.coordinates[0][0]) ){	
-							parArrondissement[j].elements ++;
-							data[dataSet].exists = true;
-						}
-					}
-				});
-				features[j].addedData = parArrondissement[j];
-
-				layers[j].setStyle({
-					fillColor: getColor(features[j])
-				});
-				$.each(data, function( dataSet ){
-					if (data[dataSet].exists) {
-						$('#menu ul li.'+dataSet).show();
-					};
-				});
-			}
+			ageChange();
 		});
 	}
 	var connected = false;
@@ -86,8 +55,8 @@ $(document).ready(function() {
 		});
 	});
 	$('#profile_link').on('click', function(e){
+		if (!connected && !localStorage.age) {
 			e.preventDefault();
-		if (!connected) {
 			$('#overlay').animate({
 				opacity: 1,
 				'z-index': 1002
@@ -110,4 +79,38 @@ $(document).ready(function() {
 			'z-index': -1
 		}, 300);
 	});
+	if (!connected) {
+		if (localStorage.name && localStorage.age) {
+			age_user = localStorage.age;
+			if (age_user >= 7 && age_user <= 10) {
+				$('#timeline').val(1);
+			}
+			else if (age_user >= 7 && age_user <= 10) {
+				$('#timeline').val(1);
+			}
+			else if (age_user >= 11 && age_user <= 14) {
+				$('#timeline').val(2);
+			}
+			else if (age_user >= 15 && age_user <= 17) {
+				$('#timeline').val(3);
+			}
+			else if (age_user >= 18 && age_user <= 24) {
+				$('#timeline').val(4);
+			}
+			else if (age_user >= 25 && age_user <= 34) {
+				$('#timeline').val(5);
+			}
+			else if (age_user >= 35 && age_user <= 49) {
+				$('#timeline').val(6);
+			}
+			else if (age_user >= 50 && age_user <= 64) {
+				$('#timeline').val(7);
+			}
+			else if (age_user >= 65 && age_user <= 77) {
+				$('#timeline').val(8);
+			}
+
+			ageChange();
+		};
+	};
 });

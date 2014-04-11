@@ -351,19 +351,16 @@ svg g path, #menu ul li{
 	margin: 30px auto;
 }
 #facebook{
-	background: url(../img/facebook.png) right no-repeat;
-	padding-right: 70px;
+	background: url(../img/facebook_connect.png) right no-repeat;
 	height: 45px;
-	width: 130px;
+	width: 200px;
 	margin: 15px auto;
-	text-align: left;
 	cursor: pointer;
-	color: #3B5998;
 }
 #regular_co{
 	margin-top: 15px;
 }
-#regular_co input[type="text"]{
+#regular_co input[type="text"], #regular_co input[type="number"]{
 	margin-bottom: 10px;
 	border-radius: 5px;
 	width: 200px;
