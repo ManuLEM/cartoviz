@@ -14,39 +14,32 @@
 			<img src="img/timelife_big.png" id="logo_loading">
 		</div>
 		<header>
-			<div id="logo"></div>
-			<nav id="settings">
-				<ul>
-					<li><a id="profile_link" href="profile.html"><img src="Icons/user.png" alt="setting1"></a></li>
-					<li class="unused"><img src="Icons/podium.png" alt="setting2"></li>
-				</ul>
-			</nav>
+			<a id="profile_link" href="profile.html"><img src="Icons/user.png" alt="profile"></a>
+			<h1>TimeLife</h1>
+			<a id="podium_link" href="podium.html"><img src="Icons/podium.png" alt="podium"></a>
 		</header>
-		<section id="framecontentLeft">
-			<nav id="menu">
-				<ul>
-					<li class="controls"><img src="Icons/tout.png"></li>
-				</ul>
-			</nav>
+		<nav id="menu">
+			<ul>
+				<li class="controls"><img src="Icons/tout.png"></li>
+			</ul>
+		</nav>
+
+		<section id="maincontent">
+			<div id="map"></div>
 		</section>
-		<section id="framecontentRight">
-			<section id="maincontent">
-				<div id="map"></div>
-			</section>
-			<footer>
-				<input id="timeline" type="range" value="4" max="8" min="1" step="0.001">
-				<p id="numbers">
-					<span data-value='1' class='petits'>7 - 10</span>
-					<span data-value='2' class='pre_ados'>11 - 14</span>
-					<span data-value='3' class='ados'>15 - 17</span>
-					<span data-value='4' class='jeunes_adultes'>18 - 24</span>
-					<span data-value='5' class='jeunes_parents'>25 - 34</span>
-					<span data-value='6' class='parents'>35 - 49</span>
-					<span data-value='7' class='fin_de_carriere'>50 - 64</span>
-					<span data-value='8' class='grands_parents'>65 - 77</span>
-				</p>
-			</footer>
-		</section>
+		<footer>
+			<input id="timeline" type="range" value="4" max="8" min="1" step="0.001">
+			<p id="numbers">
+				<span data-value='1' class='petits'>7 - 10</span>
+				<span data-value='2' class='pre_ados'>11 - 14</span>
+				<span data-value='3' class='ados'>15 - 17</span>
+				<span data-value='4' class='jeunes_adultes'>18 - 24</span>
+				<span data-value='5' class='jeunes_parents'>25 - 34</span>
+				<span data-value='6' class='parents'>35 - 49</span>
+				<span data-value='7' class='fin_de_carriere'>50 - 64</span>
+				<span data-value='8' class='grands_parents'>65 - 77</span>
+			</p>
+		</footer>
 		<div id="overlay">
 			<div id="connection">
 				<img class="close" src="img/close.png">

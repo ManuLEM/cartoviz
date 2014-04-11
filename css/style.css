@@ -125,48 +125,44 @@ html, body {
 }
 header{
 	height: 64px;
-	margin-bottom: 12px;
 	background-color: #000000;
 	position: relative;
-}
-#logo {
-	background-image: url(../img/timelife.png);
-	background-repeat: no-repeat;
-	background-size: contain;
-	padding: 25px; 
-	margin:7px 17px 0px;
-	display: inline-block;
-	vertical-align: middle;
+	z-index: 1;
+	color: #ffffff;
 }
 h1{
 	margin: 0;
-	display: inline-block;
-	vertical-align: middle;
+	line-height: 64px;
+	text-align: center;
+}
+header a{
+	position: absolute;
+	top: 15px;
+}
+header #profile_link{
+	left: 12px;
+}
+header #podium_link{
+	right: 12px;
 }
 
 
-#framecontentLeft{
-	display: inline-block;
+#menu{
+	position: absolute;
 	width: 20%; /*taille div gauche*/
-	height: calc(100% - 76px);
+	top: 137px;
+	height: auto;
+	max-height: calc(100% -210px);
 	overflow: hidden; /*desactive le scroll bar*/
 	color: black;
-	vertical-align: top;
-
-}
-#framecontentRight{
-	display: inline-block;
-	width: 80%;
-	height: calc(100% - 76px);
-	margin-left: -5px;
-	vertical-align: top;
-	position: relative;
+	z-index: 1;
+	background-color: rgba(255, 255, 255, 0.8);
 }
 
 #maincontent{
-	top: 0;
+	top: 64px;
 	left: 0;
-	right: 12px;
+	right: 0;
 	bottom: 80px;
 	position: absolute;
 }
@@ -174,8 +170,7 @@ h1{
 footer{
 	position: absolute;
 	bottom: 0;
-	right: 12px;
-	width: calc(100% - 12px);
+	width: 100%;
 	height: 80px;
 }
 
@@ -215,28 +210,16 @@ footer{
 	
 	margin-top: 6px;
 }
-#settings{
-	position: absolute;
-	top: 0;
-	right: 7px;
-}
-#settings ul{
-	margin: 10px 0;
-}
-#settings li{
-	display: inline-block;
-	list-style-type: none;
-	margin: 5px;
-	cursor: pointer;
-}
 
 #timeline{
-	width: 100%;
+	width: 97%;
+	padding: 0 1.5%;
 	margin: 20px 0 0 0;
 	-webkit-appearance: none;
 	background-color: #0b61a4;
 	height: 2px;
 	vertical-align: middle;
+	outline: none
 }
 #timeline::-moz-range-track {
 	-moz-appearance: none;
@@ -262,7 +245,7 @@ footer{
 	width: 28px;
 }
 #numbers{
-	width: 100%;
+	width: 98%;
 	position: relative;
 	white-space: nowrap;
 }
@@ -395,9 +378,6 @@ svg g path, #menu ul li{
 	font-size: 24px;
 	line-height: 40px;
 	border-radius: 10px;
-}
-.unused{
-	opacity: 0.5;
 }
 .filtered{
 	opacity: 0.4 !important;

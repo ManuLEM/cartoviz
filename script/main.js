@@ -1,7 +1,7 @@
 var map = L.map('map').setView([48.8567, 2.3508], 12);
 
-var southWest = new L.latLng([48.81, 2.22], map.getMaxZoom());
-var northEast = new L.latLng([48.91, 2.48], map.getMaxZoom());
+var southWest = new L.latLng([48.81, 2.17], map.getMaxZoom());
+var northEast = new L.latLng([48.91, 2.45], map.getMaxZoom());
 map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
 
 L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg', {
@@ -135,7 +135,7 @@ var DataIcon = L.Icon.extend({
 
 for (var i = 0; i < $('#numbers span').length; i++) {
 	$('#numbers span').eq(i).css({
-		left: ((($('#numbers').width() - 38) / 7) * i) - 10
+		left: ((($('#numbers').width() - 55) / 7) * i) + 10
 	});
 };
 

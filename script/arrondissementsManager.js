@@ -48,67 +48,67 @@ function getColor(feature) {
 	finalPercent = finalPercent / count;
 
 	if ( age_user >= 7 && age_user <= 10 ){
-	    return finalPercent > 3.75  ? '#ba0e0e' :
-	           finalPercent > 3     ? '#e91212' :
-	           finalPercent > 2.25  ? '#ed4141' :
-	           finalPercent > 1.5   ? '#f17070' :
-	           finalPercent > 0.75  ? '#f6a0a0' :
+	    return finalPercent > 3.3  ? '#ba0e0e' :
+	           finalPercent > 2.7     ? '#e91212' :
+	           finalPercent > 1.8  ? '#ed4141' :
+	           finalPercent > 1   ? '#f17070' :
+	           finalPercent > 0.3  ? '#f6a0a0' :
 	                      			  '#facfcf';
 	}
 	else if ( age_user >= 11 && age_user <= 14 ){
-	    return finalPercent > 3.75  ? '#aa1368' :
-	           finalPercent > 3     ? '#d51883' :
-	           finalPercent > 2.25  ? '#dd469b' :
-	           finalPercent > 1.5   ? '#e574b4' :
-	           finalPercent > 0.75  ? '#eea2cd' :
+	    return finalPercent > 3.3 ? '#aa1368' :
+	           finalPercent > 2.7     ? '#d51883' :
+	           finalPercent > 1.8  ? '#dd469b' :
+	           finalPercent > 1     ? '#e574b4' :
+	           finalPercent > 0.3 ? '#eea2cd' :
 	                      			  '#f6d0e6';
 	}
 	else if ( age_user >= 15 && age_user <= 17 ){
-	    return finalPercent > 3.75  ? '#c6500c' :
-	           finalPercent > 3     ? '#f8650f' :
-	           finalPercent > 2.25  ? '#f9833e' :
-	           finalPercent > 1.5   ? '#faa26f' :
-	           finalPercent > 0.75  ? '#fcc19f' :
+	    return finalPercent > 3.3 ? '#c6500c' :
+	           finalPercent > 2.7     ? '#f8650f' :
+	           finalPercent > 1.8 ?'#f9833e' :
+	           finalPercent > 1     ? '#faa26f' :
+	           finalPercent > 0.3 ? '#fcc19f' :
 	                      			  '#fde0cf';
 	}
 	else if ( age_user >= 18 && age_user <= 24 ){
-	    return finalPercent > 3.75  ? '#018fa2' :
-	           finalPercent > 3     ? '#02b3cb' :
-	           finalPercent > 2.25  ? '#34c2d5' :
-	           finalPercent > 1.5   ? '#67d1df' :
-	           finalPercent > 0.75  ? '#99e0ea' :
+	    return finalPercent > 3.3 ? '#018fa2' :
+	           finalPercent > 2.7     ? '#02b3cb' :
+	           finalPercent > 1.8 ? '#34c2d5' :
+	           finalPercent > 1     ? '#67d1df' :
+	           finalPercent > 0.3 ? '#99e0ea' :
 	                      			  '#cceff4';
 	}
 	else if ( age_user >= 25 && age_user <= 34 ){
-	    return finalPercent > 3.75  ? '#83019d' :
-	           finalPercent > 3     ? '#a402c5' :
-	           finalPercent > 2.25  ? '#b634d0' :
-	           finalPercent > 1.5   ? '#c867dc' :
-	           finalPercent > 0.75  ? '#da99e7' :
+	    return finalPercent > 3.3 ? '#83019d' :
+	           finalPercent > 2.7     ? '#a402c5' :
+	           finalPercent > 1.8 ? '#b634d0' :
+	           finalPercent > 1     ? '#c867dc' :
+	           finalPercent > 0.3 ? '#da99e7' :
 	                      			  '#ecccf3';
 	}
 	else if ( age_user >= 35 && age_user <= 49 ){
-	    return finalPercent > 3.75  ? '#b17c02' :
-	           finalPercent > 3     ? '#de9b03' :
-	           finalPercent > 2.25  ? '#e4af35' :
-	           finalPercent > 1.5   ? '#ebc367' :
-	           finalPercent > 0.75  ? '#f1d79a' :
+	    return finalPercent > 3.3 ? '#b17c02' :
+	           finalPercent > 2.7     ? '#de9b03' :
+	           finalPercent > 1.8 ? '#e4af35' :
+	           finalPercent > 1     ? '#ebc367' :
+	           finalPercent > 0.3 ? '#f1d79a' :
 	                      			  '#f8ebcc';
 	}
 	else if ( age_user >= 50 && age_user <= 64 ){
-	    return finalPercent > 3.75  ? '#297c04' :
-	           finalPercent > 3     ? '#349c06' :
-	           finalPercent > 2.25  ? '#5caf37' :
-	           finalPercent > 1.5   ? '#85c369' :
-	           finalPercent > 0.75  ? '#add79b' :
+	    return finalPercent > 3.3 ? '#297c04' :
+	           finalPercent > 2.7     ? '#349c06' :
+	           finalPercent > 1.8  ? '#5caf37' :
+	           finalPercent > 1     ? '#85c369' :
+	           finalPercent > 0.3 ? '#add79b' :
 	                      			  '#d6ebcd';
 	}
 	else if ( age_user >= 65 && age_user <= 77 ){
-	    return finalPercent > 3.75  ? '#9b4f04' :
-	           finalPercent > 3     ? '#c26305' :
-	           finalPercent > 2.25  ? '#ce8236' :
-	           finalPercent > 1.5   ? '#daa169' :
-	           finalPercent > 0.75  ? '#e6c09b' :
+	    return finalPercent > 3.3 ? '#9b4f04' :
+	           finalPercent > 2.7     ? '#c26305' :
+	           finalPercent > 1.8 ? '#ce8236' :
+	           finalPercent > 1     ? '#daa169' :
+	           finalPercent > 0.3 ? '#e6c09b' :
 	                      			  '#f2dfcd';
 	}
 }
