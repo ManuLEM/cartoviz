@@ -1,0 +1,11 @@
+{
+  "id": "dazzda",
+  "type": "default",
+  "name": "dazzda",
+  "version": "0.0.1",
+  "dependencies": {
+    "dependency_1": "latest",
+    "dependency_2": "latest",
+    "dependency_3": "latest"
+  }
+}
